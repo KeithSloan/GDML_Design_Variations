@@ -1,0 +1,7 @@
+variant,width_mm,absorber_material,active_material,absorber_mm,active_mm,layers,gdml,note
+Pb2_Sc4_x60,200,G4_Pb,G4_PLASTIC_SC_VINYLTOLUENE,2,4,60,Pb2_Sc4_x60.gdml,"baseline, about 21 X0"
+Pb4_Sc4_x30,200,G4_Pb,G4_PLASTIC_SC_VINYLTOLUENE,4,4,30,Pb4_Sc4_x30.gdml,"coarser sampling, same lead"
+Pb1_Sc2_x120,200,G4_Pb,G4_PLASTIC_SC_VINYLTOLUENE,1,2,120,Pb1_Sc2_x120.gdml,"finer sampling, same lead"
+W1p4_Sc4_x60,200,G4_W,G4_PLASTIC_SC_VINYLTOLUENE,1.4,4,60,W1p4_Sc4_x60.gdml,compact tungsten version
+Fe6_Sc4_x60,200,G4_Fe,G4_PLASTIC_SC_VINYLTOLUENE,6,4,60,Fe6_Sc4_x60.gdml,"iron, about 20 X0 but 600 mm deep"
+Pb2_LAr4_x60,200,G4_Pb,G4_lAr,2,4,60,Pb2_LAr4_x60.gdml,liquid-argon active layers

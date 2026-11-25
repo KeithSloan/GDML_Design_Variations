@@ -10,7 +10,9 @@ data, and improvements to the Geant4 application or the pipeline.
 - Before a pull request, run:
 
   ```bash
+  python3 tools/export_csv.py      # regenerate the variation tables
   python3 tests/test_builds.py
+  python3 tests/test_csv.py
   python3 tests/test_pipeline.py
   ```
 

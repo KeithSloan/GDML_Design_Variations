@@ -36,13 +36,19 @@ may run them when the user asks, as you would any command, but:
   marking is exported as a GDML `SensDet` auxiliary, and `gdmlvar` turns it
   into a sensitive detector named NAME.  Copy numbers (`placeCopy(...,
   copynumber=i)`) are recorded per hit.
+- Two kinds of variation: geometry/material (one FreeCAD export each) and
+  physics (physics list, source: applied by Geant4 to every export).  Both
+  live in `study.toml`; `geometry_variants.csv` and `physics_variants.csv`
+  are generated from it by `tools/export_csv.py`.  Never edit the CSVs.
 - `pipeline/study.py` is standard library only: FreeCAD imports it.
 - Units: mm, MeV, g/cm3 throughout, as in the file and key names.
 
 ## Checks before committing
 
 ```bash
+python3 tools/export_csv.py          # after any change to a study.toml
 python3 tests/test_builds.py
+python3 tests/test_csv.py
 python3 tests/test_pipeline.py
 python3 -m py_compile pipeline/*.py studies/*/*.py tests/*.py tools/*.py
 ```

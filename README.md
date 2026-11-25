@@ -36,6 +36,19 @@ repeated exactly.
 Details: [docs/WORKFLOW.md](docs/WORKFLOW.md); review steps:
 [docs/REVIEW_GUIDE.md](docs/REVIEW_GUIDE.md).
 
+## Two kinds of variation
+
+| Kind | Examples | Handled by | Table |
+|---|---|---|---|
+| **Geometry and material** | thickness, number of layers, crystal size, absorber material | one FreeCAD export per variant: n variants = n GDML files | `studies/<name>/geometry_variants.csv` |
+| **Physics** | physics list (hadronic model, EM option), particle source | Geant4 at run time, on every GDML file, without re-exporting | `studies/<name>/physics_variants.csv` |
+
+A study runs every geometry variant under every physics setting.  Both
+kinds are defined in the study's `study.toml`, which is the source of
+truth.  The two CSV tables are generated from it (`tools/export_csv.py`) so
+the variations can be read as spreadsheets, on GitHub or in Numbers, Excel
+or LibreOffice.  Do not edit the CSV files by hand.
+
 ## Sample studies
 
 | Study | Design | Varied | Source | Physics lists | Primary metric | Check against |
@@ -107,10 +120,11 @@ and opens in ParaView or any VTK program.
 
 | Path | |
 |---|---|
-| `studies/` | the studies; format in [studies/README.md](studies/README.md) |
+| `studies/` | the studies (`study.toml`, `build.py`, `metrics.py`, the two variation tables); format in [studies/README.md](studies/README.md) |
 | `g4app/` | `gdmlvar`: GDML geometry, `SensDet` volumes as detectors, any reference physics list by name, GPS source, scoring mesh |
 | `pipeline/` | the scripted stages |
-| `tests/` | `test_builds.py` (geometry of every variant, no FreeCAD needed), `test_pipeline.py` (all scripts against a stand-in for Geant4) |
+| `tests/` | `test_builds.py` (geometry of every variant, no FreeCAD needed), `test_pipeline.py` (all scripts against a stand-in for Geant4), `test_csv.py` (variation tables up to date) |
+| `tools/export_csv.py` | writes the variation tables from `study.toml` (`--check` to verify) |
 | `tools/attenuation_refs.py` | regenerates the NIST reference coefficients |
 | `docs/` | workflow, review guide, [paper](docs/PAPER.md) |
 
@@ -118,8 +132,8 @@ and opens in ParaView or any VTK program.
 
 - `gdmlvar` compiles against the Geant4 11.4.3 headers.  It has not yet
   been built and run against a full Geant4 install.
-- The Python stages pass `tests/test_pipeline.py`, and every variant
-  passes `tests/test_builds.py`.
+- The Python stages pass `tests/test_pipeline.py`, every variant passes
+  `tests/test_builds.py`, and the variation tables pass `tests/test_csv.py`.
 - The first end-to-end run, with FreeCAD and Geant4 on one machine, is the
   next step.  The paper's results section is waiting for it.
 

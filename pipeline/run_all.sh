@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # The scripted part of the pipeline, for one or more studies (default: all):
+#   0. the variation tables (CSV) from study.toml
 #   1. GDML for each variant, in FreeCAD      (skipped where it exists)
 #   2. build the Geant4 app                   (skipped if up to date)
 #   3. every variant x physics list x source  (resumes; finished runs skipped)
@@ -32,6 +33,9 @@ command -v geant4-config >/dev/null ||
   { echo "geant4-config not found: activate the Geant4 environment (conda activate g4)" >&2; exit 2; }
 "$PY" -c "import numpy, matplotlib" 2>/dev/null ||
   { echo "$PY needs numpy and matplotlib: $PY -m pip install -r requirements.txt" >&2; exit 2; }
+
+# 0. variation tables (geometry_variants.csv, physics_variants.csv) from study.toml
+"$PY" tools/export_csv.py "${studies[@]}"
 
 # 1. GDML
 need=""

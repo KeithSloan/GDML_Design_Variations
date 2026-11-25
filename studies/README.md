@@ -1,13 +1,23 @@
 # Studies
 
-Each study is a directory with three files.  The pipeline finds a study by
-its directory name (`shield` = `studies/shield`).
+Each study is a directory with three files you write and two that are
+generated.  The pipeline finds a study by its directory name (`shield` =
+`studies/shield`).
 
 | file | what it holds | used by |
 |---|---|---|
 | `study.toml` | description, objective, world, custom materials, default parameters, variants, physics lists, sources, scoring mesh, metrics to compare and plot, reference values, check tolerances | everything |
 | `build.py` | `build(gd, params)`: builds one variant with `freecad.gdml.GDMLDesign` | `pipeline/generate_gdml.py` in FreeCAD |
 | `metrics.py` | `run_metrics(ctx)`, `derived(rows, study)`, optional `extra_plots(...)` | `pipeline/analyse.py` |
+| `geometry_variants.csv` | *generated*: one row per FreeCAD export, every build parameter | people (spreadsheet view) |
+| `physics_variants.csv` | *generated*: one row per Geant4 setting (physics list × source) | people (spreadsheet view) |
+
+Geometry and material variations need one FreeCAD export each.  Physics
+variations (physics lists, sources) are applied by Geant4 to every export,
+at run time.  `study.toml` defines both; `python3 tools/export_csv.py`
+rewrites the two tables from it, and `pipeline/run_all.sh` does so too.
+Never edit the CSV files by hand: `tests/test_csv.py` fails if they differ
+from `study.toml`.
 
 ## study.toml
 
@@ -114,6 +124,7 @@ def extra_plots(contexts, study, outdir, plt):   # optional
 2. Write `build.py`; try it in FreeCAD:
    `from pipeline import generate_gdml; generate_gdml.generate("mystudy", only="First*")`.
 3. Write `metrics.py`, with a reference value wherever one exists.
-4. `python3 tests/test_builds.py` (add the study's detectors to
+4. `python3 tools/export_csv.py mystudy` to write the variation tables.
+5. `python3 tests/test_builds.py` (add the study's detectors to
    `EXPECTED_SD`), then `pipeline/run_all.sh mystudy` with
    `EVENTS_SCALE=0.05` for a quick first look.

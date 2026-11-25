@@ -9,7 +9,7 @@ scripts, so the numbers are reproducible and come only from Geant4.  You
 | # | Stage | Done by | Input | Output | You |
 |---|---|---|---|---|---|
 | 1 | **Design** | AI with you | an idea ("a gamma shield") | `studies/<name>/build.py`, `study.toml` (objective, source, physics lists, metrics), `metrics.py` | agree the design and the objective |
-| 2 | **Variations** | AI proposes | the design and objective | `[[variants]]` entries in `study.toml`, each with a reason | **approve before any compute** |
+| 2 | **Variations** | AI proposes | the design and objective | `[[variants]]` (geometry, material) and `[physics]`/`[[sources]]` (physics) in `study.toml`, each with a reason; the two tables `geometry_variants.csv`, `physics_variants.csv` written from it | **approve before any compute** |
 | 3 | GDML generation | script: `pipeline/gen_gdml.sh` (FreeCAD + `generate_gdml.py`) | `build.py`, variants | `results/<name>/gdml/*.gdml` and `*.json` | - |
 | 4 | Geant4 runs | script: `pipeline/run_matrix.py` (runs `gdmlvar`) | GDML, physics lists, sources | `results/<name>/runs/*/` | - |
 | 4a | Analysis and checks | script: `pipeline/analyse.py`, `render.py` | run outputs | `metrics.csv`, `flags.json`, plots, renders, `review_input.md` | - |
@@ -17,6 +17,12 @@ scripts, so the numbers are reproducible and come only from Geant4.  You
 
 `pipeline/run_all.sh` runs stages 3 to 4a in one go and resumes where it
 stopped.
+
+Geometry and material variations cost one FreeCAD export each (stage 3).
+Physics variations cost nothing at stage 3: Geant4 applies each physics
+list and source to every exported GDML file at stage 4.  So a study of n
+geometry variants and m physics settings needs n exports and n × m runs.
+The two CSV tables show the n and the m.
 
 ## Why the split
 

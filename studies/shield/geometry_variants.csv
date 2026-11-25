@@ -1,0 +1,11 @@
+variant,width_mm,phantom_mm,phantom_front_mm,material,thickness_mm,gdml,note
+No_shield,300,10,150,G4_Pb,0,No_shield.gdml,reference for the transmission
+Pb_5mm,300,10,150,G4_Pb,5,Pb_5mm.gdml,
+Pb_10mm,300,10,150,G4_Pb,10,Pb_10mm.gdml,
+Pb_20mm,300,10,150,G4_Pb,20,Pb_20mm.gdml,
+W_5mm,300,10,150,G4_W,5,W_5mm.gdml,
+W_10mm,300,10,150,G4_W,10,W_10mm.gdml,
+Fe_20mm,300,10,150,G4_Fe,20,Fe_20mm.gdml,
+Fe_40mm,300,10,150,G4_Fe,40,Fe_40mm.gdml,
+Concrete_50mm,300,10,150,G4_CONCRETE,50,Concrete_50mm.gdml,
+Concrete_100mm,300,10,150,G4_CONCRETE,100,Concrete_100mm.gdml,

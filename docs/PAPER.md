@@ -78,6 +78,15 @@ scoring mesh, reference values), `build.py` and `metrics.py`.
 `addMaterial` for materials outside Geant4's NIST list, and `setSensitive`
 to mark detector volumes.
 
+Variations are of two kinds.  Geometry and material variations each need
+their own GDML export.  Physics variations (the physics list and the
+particle source) are applied by Geant4 at run time to every export.  A
+study of n geometry variants and m physics settings therefore needs n
+exports and n × m runs.  Both kinds are defined in `study.toml`, the
+source of truth, and written out as two CSV tables,
+`geometry_variants.csv` and `physics_variants.csv`, for reading as
+spreadsheets.  A test fails if the tables differ from the TOML.
+
 ### 3.2 GDML generation
 
 `pipeline/generate_gdml.py` runs inside FreeCAD.  For each variant it
