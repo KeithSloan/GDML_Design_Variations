@@ -146,7 +146,7 @@ def extra_plots(contexts, study, outdir, plt):
     first = study.physics_lists[0]
     written = []
 
-    fig, ax = plt.subplots(figsize=(7.5, 4.5))
+    fig, ax = plt.subplots(figsize=(9.5, 4.5))   # legend outside on the right
     bins = np.linspace(0.0, 0.7, 141)
     for ctx in sel:
         e = ctx.events["Crystal_edep_MeV"]
@@ -158,14 +158,14 @@ def extra_plots(contexts, study, outdir, plt):
     ax.set_ylabel("events / 5 keV")
     ax.set_title(f"Deposited-energy spectra, {source} ({first}), no resolution")
     if ax.get_legend_handles_labels()[0]:
-        ax.legend(fontsize=7)
+        ax.legend(fontsize=7, loc="upper left", bbox_to_anchor=(1.01, 1.0))
     fig.tight_layout()
     path = outdir / "spectra.png"
     fig.savefig(path, dpi=130)
     plt.close(fig)
     written.append(path)
 
-    fig, ax = plt.subplots(figsize=(7.5, 4.5))
+    fig, ax = plt.subplots(figsize=(9.5, 4.5))   # legend outside on the right
     bins = np.linspace(0.0, 0.8, 161)   # room for the high side of wide peaks
     drawn = False
     for ctx in sel:
@@ -183,7 +183,7 @@ def extra_plots(contexts, study, outdir, plt):
         ax.set_xlabel("measured energy (MeV), resolution applied")
         ax.set_ylabel("events / 5 keV")
         ax.set_title(f"Spectra with detector resolution, {source} ({first})")
-        ax.legend(fontsize=7)
+        ax.legend(fontsize=7, loc="upper left", bbox_to_anchor=(1.01, 1.0))
         fig.tight_layout()
         path = outdir / "spectra_resolution.png"
         fig.savefig(path, dpi=130)

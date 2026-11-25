@@ -169,15 +169,24 @@ and opens in ParaView or any VTK program.
   - Reviews, tables and plots are in
     [docs/results/round1](docs/results/round1/README.md), and the paper's
     results section covers them.
-- **Round 2 ready to run:** the variants the reviews proposed were
-  approved, and are now in the studies' `study.toml`.
+- **Round 2 complete** (25 Nov 2026): the variants proposed by the round-1
+  reviews, 141/141 runs, 87/90 reference checks pass.  Reviews, tables and
+  plots are in [docs/results/round2](docs/results/round2/README.md); the
+  paper's section 6.6 summarises them.
+  - Shield: at equal mass, lead gives 18–27 % less dose than tungsten and
+    about half that of iron.
+  - Calorimeter: 1 mm lead with 2 mm liquid argon gives the best electron
+    resolution (σ/E 0.055–0.058 at 1 GeV).
+  - Detector: at equal mass BGO gives 27–30 % more peak efficiency than
+    NaI.  FTFP_BERT simulates no X-ray escape, so quote EMZ or LIV.
 - **Round 2 design** (branch `round-2-design`), both proposed by the round-1
   reviews:
   - the detector study applies each crystal's published energy resolution
     in the analysis, giving resolved peak efficiency, peak purity and
     peak-to-Compton;
   - a new `hcal` study, deep enough (about 7 λ) to contain 10 GeV pions,
-    with three approved variants.
+    with three approved variants, not yet run.
+- **Round 3 proposals** are in the round-2 reviews, awaiting approval.
 - **Tests:** the Python stages pass `tests/test_pipeline.py`, every variant
   passes `tests/test_builds.py`, and the variation tables pass
   `tests/test_csv.py`.  `pipeline/check_setup.sh` is tested against

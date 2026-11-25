@@ -29,7 +29,10 @@ full run (102 Geant4 runs, about 11 minutes on a laptop) the checks
 confirmed the FreeCAD → GDML → Geant4 chain, including custom materials.
 They also exposed a systematic 1–3 % excess photon attenuation in the
 standard electromagnetic option at 662 keV, and the review found that one
-study's design could not answer half of its own objective.
+study's design could not answer half of its own objective.  A second round
+of reviewer-proposed variants answered the equal-mass and fine-sampling
+questions the first round left open.  It also showed that the standard
+option produces no X-ray escape in scintillation crystals.
 
 ## 1. Introduction
 
@@ -405,8 +408,9 @@ the same under all three lists.
 - **At equal size:** BGO is best (3.0–3.2 × NaI), then LYSO, CsI and
   LaBr₃.  BGO and LYSO are also best per kilogram.
 - **Physics lists:** for the high-Z crystals FTFP_BERT gives 4–6 % higher
-  peak efficiencies than EMZ and LIV (2–3 σ).  This is in the direction of
-  its stronger attenuation.
+  peak efficiencies than EMZ and LIV (2–3 σ).  Round 1 put this down to
+  its stronger attenuation.  Round 2 found a second cause of comparable
+  size, the absence of X-ray escape under FTFP_BERT (section 6.6).
 
 ### 6.5 What the pipeline added
 
@@ -425,6 +429,56 @@ from any single run:
   Both were fixed before the full run.  The reproducible records (seeds,
   versions, logs) made each a short investigation.
 
+### 6.6 Round 2
+
+The reviews proposed eight new variants, which were approved.
+The detector analysis gained energy resolution (section 4.3).  The 102
+round-1 runs were reused unchanged, so round 2 needed 39 new runs.  All
+141 runs succeeded with no overlaps or warnings, and 87 of 90 reference
+checks pass.  The three failures are FTFP_BERT uncollided fractions, the
+round-1 effect.  FTFP_BERT is now below NIST in all 21 shield and crystal
+cases.  Reviews and tables are in
+[docs/results/round2](results/round2/README.md).
+
+- **Shield, equal mass (22.7 g/cm²).**  Lead 20 mm transmits 0.136–0.153
+  of the dose, tungsten 11.76 mm 0.186–0.191, iron 28.8 mm 0.355–0.381.
+  So lead gives 18–27 % less dose than tungsten for the same mass (4–7 σ),
+  and about half the dose of iron.  At 40 mm of lead the transmission is
+  0.0165–0.0170, and the build-up factor rises to 2.4–2.5.
+- **Calorimeter, fine sampling.**
+  - With 1 mm lead and 2 mm active layers, liquid argon gives σ/E =
+    0.055–0.058 at 1 GeV.  It is the best variant, though its lead over
+    scintillator (0.059–0.063) is significant under EMZ only.
+  - Tungsten 0.7 mm / scintillator 2 mm reaches 0.061–0.068 in 324 mm,
+    with the best containment.
+  - Halving both layer thicknesses improves σ/E by 20–27 % for every
+    absorber/active pair tested.
+- **Detector, size and mass.**  At the mass of the 3 × 3 inch NaI
+  (1.27 kg), a BGO cylinder has 27–30 % more full-energy-peak efficiency
+  and a peak-to-total of 0.83–0.84 against 0.55–0.56.  At 2 inches, BGO
+  leads LYSO by 11–13 %.
+- **Detector, resolution.**  With published resolutions applied, the
+  efficiency ranking is unchanged: the resolved peak keeps about 98 % of the
+  full-energy events.  LaBr₃ has the purest peak window (0.998–0.999), and
+  BGO the highest peak-to-Compton (28–45) through its high photofraction.
+  LaBr₃'s real strength, separating nearby lines, needs a multi-line
+  source, which is proposed for round 3.
+- **X-ray escape.**  The detector review looked at the event files for
+  events missing a fixed energy below 662 keV.  Under EMZ and LIV, escape
+  lines appear at the K X-ray energies of Bi, Lu, I, Cs and La.  Under
+  FTFP_BERT they are absent.
+  - FTFP_BERT therefore counts escape events as full-energy events.
+  - For BGO at 1.5 inch, about half of its +4.6 % peak efficiency over
+    EMZ comes from this (peak-to-total), and half from its stronger
+    attenuation (total efficiency).
+  - This corrects the round-1 interpretation (section 6.4).
+- **Open questions.**  Two calorimeter designs show a 1 % difference in
+  sampling fraction between QGSP_BIC and FTFP_BERT at 4–6 σ.  One of them
+  uses liquid argon, so the round-1 explanation (neutrons in hydrogen-rich
+  scintillator) cannot be the whole story.  A few events far in the tail
+  of the electron signal also make the σ/mean resolution and its Gaussian
+  error unreliable.  A tail-insensitive width is proposed.
+
 ## 7. Discussion and limitations
 
 - **Deposited energy is not a detector signal.**  No light collection,
@@ -433,10 +487,11 @@ from any single run:
   quenching in particular changes e/π in scintillator.  The detector
   study's energy resolution (from round 2) is a published FWHM applied in
   the analysis, not simulated.
-- **Choice of EM option for photons.**  Round 1 shows the standard EM
-  option (FTFP_BERT) attenuating 662 keV photons 1–3 % more than NIST in
-  high-Z materials.  For absolute shielding or efficiency numbers at these
-  energies, EMZ or LIV should be preferred.
+- **Choice of EM option for photons.**  The standard EM option
+  (FTFP_BERT) attenuates 662 keV photons slightly more than NIST: it is
+  below the reference in all 21 shield and crystal cases.  It also
+  produces no X-ray escape in the crystals.  For absolute shielding or
+  efficiency numbers at these energies, EMZ or LIV should be preferred.
 - **Physics-list spread is not an uncertainty.**  Agreement between
   reference lists shows robustness to model choice, but the lists share
   components and data and need not bracket reality.
