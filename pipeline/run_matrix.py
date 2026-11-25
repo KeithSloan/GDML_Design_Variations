@@ -10,7 +10,8 @@ g4app (g4app/build/gdmlvar, or --app).  Each run gets its own directory
 results/<study>/runs/<variant>__<physics>__<source>/ with run.mac, g4.log,
 events.csv.gz, summary.json and, for the mesh physics lists, mesh.vti.
 Every finished run is appended to results/<study>/runs.jsonl; runs already
-recorded as ok are skipped (resume), unless --force.
+recorded as ok with the same number of events are skipped (resume), unless
+--force.  A different --events-scale re-runs them.
 
 Standard library only, except the mesh conversion (numpy), which is skipped
 with a note if numpy is missing.
@@ -34,13 +35,33 @@ _lock = threading.Lock()
 
 
 def _done(jsonl):
-    ok = {}
+    """{run key: events requested} for runs whose latest record is ok."""
+    done = {}
     if jsonl.exists():
         for line in jsonl.read_text().splitlines():
             if line.strip():
                 rec = json.loads(line)
-                ok[rec["key"]] = rec["status"] == "ok"
-    return {k for k, v in ok.items() if v}
+                if rec["status"] == "ok":
+                    done[rec["key"]] = rec.get("events_requested")
+                else:
+                    done.pop(rec["key"], None)
+    return done
+
+
+def events_for(src, scale):
+    return max(1, int(round(src.events * scale)))
+
+
+def pending(st, jsonl, scale=1.0, force=False, only=None, physics=None, sources=None):
+    """Runs still to do: not finished ok, or finished with a different
+    number of events (e.g. a quick look with EVENTS_SCALE before a full run)."""
+    todo = studylib.runs(st, only, physics, sources)
+    if force:
+        return todo, 0
+    done = _done(jsonl)
+    keep = [(v, p, s) for v, p, s in todo
+            if done.get(studylib.run_key(v.name, p, s.name)) != events_for(s, scale)]
+    return keep, len(todo) - len(keep)
 
 
 def _record(jsonl, rec):
@@ -79,7 +100,7 @@ def run_one(st, variant, physics, src, args, gdml_dir, runs_dir, jsonl):
     if rdir.exists():
         shutil.rmtree(rdir)
     rdir.mkdir(parents=True)
-    events = max(1, int(round(src.events * args.events_scale)))
+    events = events_for(src, args.events_scale)
     with_mesh = physics in st.mesh_physics and not args.no_mesh
     (rdir / "run.mac").write_text(studylib.macro(st, src, events, with_mesh))
     seed = studylib.run_seed(key, args.seed)
@@ -157,11 +178,9 @@ def main(argv=None):
     st = studylib.load(args.study)
     out = studylib.results_dir(st, args.results).resolve()  # runs use their own cwd
     gdml_dir, runs_dir, jsonl = out / "gdml", out / "runs", out / "runs.jsonl"
-    todo = studylib.runs(st, args.only, args.physics, args.sources)
-    done = set() if args.force else _done(jsonl)
-    todo = [(v, p, s) for v, p, s in todo
-            if studylib.run_key(v.name, p, s.name) not in done]
-    print(f"{st.name}: {len(todo)} runs to do ({len(done)} already done)")
+    todo, ndone = pending(st, jsonl, args.events_scale, args.force,
+                          args.only, args.physics, args.sources)
+    print(f"{st.name}: {len(todo)} runs to do ({ndone} already done with these event counts)")
     if args.dry_run:
         for v, p, s in todo:
             print("  ", studylib.run_key(v.name, p, s.name))

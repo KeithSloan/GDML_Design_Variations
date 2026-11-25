@@ -36,6 +36,11 @@ def slice_xz(vti, title, path):
     extent = [oz, oz + nz * sz, ox, ox + nx * sx]   # z across, x up
     edep = m["arrays"]["edep_MeV"][:, j, :]
     names = m["fields"].get("materials", [])
+    # Cells below the colour floor (6 decades under the maximum) are left
+    # blank, not drawn in the lowest colour: vacuum (G4_Galactic) records
+    # deposits of ~1e-12 of the maximum, which are numerical noise.  Cells
+    # whose centre is vacuum but which straddle a wall do hold real energy
+    # (partial volume), so they are not masked by material.
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.6))
     if "material_id" in m["arrays"]:
@@ -53,7 +58,7 @@ def slice_xz(vti, title, path):
     if pos.size:
         vmax = pos.max()
         norm = LogNorm(vmin=max(pos.min(), vmax * 1e-6), vmax=vmax)
-        im = axes[1].imshow(np.where(edep > 0, edep, np.nan), origin="lower",
+        im = axes[1].imshow(np.where(edep >= norm.vmin, edep, np.nan), origin="lower",
                             extent=extent, aspect="auto", cmap="inferno", norm=norm,
                             interpolation="nearest")
         fig.colorbar(im, ax=axes[1], label="MeV per primary per cell")
@@ -63,7 +68,7 @@ def slice_xz(vti, title, path):
         axes[1].contour(zc, xc, np.nan_to_num(mat, nan=-1),
                         levels=np.arange(-0.5, 10.5, 1.0), colors="cyan",
                         linewidths=0.6)
-    axes[1].set_title("energy deposited (log)")
+    axes[1].set_title("energy deposited in material (log, 6 decades)")
     for ax in axes:
         ax.set_xlabel("z (mm)")
         ax.set_ylabel("x (mm)")

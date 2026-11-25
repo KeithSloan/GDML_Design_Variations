@@ -37,10 +37,13 @@ def main():
             rc = run_matrix.main([name, "--app", str(FAKE), "--results", str(root),
                                   "--events-scale", "0.02", "-j", "2"])
             assert rc == 0, f"{name}: run_matrix failed"
-            # resume: nothing left to do
-            assert run_matrix.main([name, "--app", str(FAKE), "--results", str(root),
-                                    "--dry-run"]) == 0
             out = studylib.results_dir(st, root)
+            # resume: nothing left at the same event count, everything at another
+            jsonl = out / "runs.jsonl"
+            assert run_matrix.pending(st, jsonl, 0.02)[0] == []
+            assert len(run_matrix.pending(st, jsonl, 1.0)[0]) == len(studylib.runs(st))
+            assert run_matrix.main([name, "--app", str(FAKE), "--results", str(root),
+                                    "--events-scale", "0.02", "--dry-run"]) == 0
             recs = analyse.latest_records(out / "runs.jsonl")
             assert len(recs) == len(studylib.runs(st)), "missing runs"
             vti = [r for r in recs.values() if r.get("vti")]

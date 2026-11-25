@@ -49,7 +49,11 @@ objective.
 5. **Look at the pictures.**  Check that the geometry in the material
    panels is what the design intended, that the beam hits what it should,
    and that energy is not deposited where there is no material.  Report
-   anything odd, with the file name.
+   anything odd, with the file name.  The material panel shows the material
+   at each cell's centre, so a cell straddling a thin wall can show vacuum
+   there yet hold energy deposited in the wall (partial volume): that is
+   not an error.  Deposits more than 6 decades below the maximum are not
+   drawn.
 
 6. **Propose the next round.**  Suggest at most a handful of new or changed
    variants as `[[variants]]` entries for `study.toml`, each with the
