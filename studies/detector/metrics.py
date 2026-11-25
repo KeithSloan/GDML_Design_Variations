@@ -89,7 +89,8 @@ def extra_plots(contexts, study, outdir, plt):
     ax.set_xlabel("energy deposited in crystal (MeV)")
     ax.set_ylabel("events / 5 keV")
     ax.set_title(f"Deposited-energy spectra, {cone[0]} ({first}), no resolution")
-    ax.legend(fontsize=7)
+    if ax.get_legend_handles_labels()[0]:
+        ax.legend(fontsize=7)
     fig.tight_layout()
     path = outdir / "spectra.png"
     fig.savefig(path, dpi=130)

@@ -156,8 +156,10 @@ and opens in ParaView or any VTK program.
 
 ## Status
 
-- `gdmlvar` compiles against the Geant4 11.4.3 headers.  It has not yet
-  been built and run against a full Geant4 install.
+- `gdmlvar` builds and runs with Geant4 11.4.3 from conda-forge on macOS
+  (arm64), and the GDML for all three studies has been generated with
+  FreeCAD 1.1.4 and GDML workbench 2.2.16.  The first quick run found a
+  crash in runs writing the scoring mesh, since fixed.
 - `pipeline/check_setup.sh` and the CMake dependency lookup are tested
   against stand-in environments (missing expat headers, missing data sets,
   a Python outside the environment).

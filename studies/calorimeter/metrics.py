@@ -128,7 +128,8 @@ def extra_plots(contexts, study, outdir, plt):
         ax.set_xlabel("depth (fraction of calorimeter)")
         ax.set_ylabel("fraction of signal per layer")
         ax.set_title(f"Longitudinal profile, {src} ({first})")
-        ax.legend(fontsize=7)
+        if ax.get_legend_handles_labels()[0]:
+            ax.legend(fontsize=7)
     fig.tight_layout()
     path = outdir / "longitudinal_profile.png"
     fig.savefig(path, dpi=130)

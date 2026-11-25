@@ -49,6 +49,24 @@ def _record(jsonl, rec):
             f.write(json.dumps(rec) + "\n")
 
 
+def _g4_error(log_path):
+    """The last fatal G4Exception in g4.log, as one line, or ''."""
+    try:
+        lines = log_path.read_text(errors="replace").splitlines()
+    except OSError:
+        return ""
+    msg = ""
+    for i, line in enumerate(lines):
+        if line.startswith("*** G4Exception :"):
+            code = line.split(":", 1)[1].strip()
+            origin = lines[i + 1].split(":", 1)[1].strip() if i + 1 < len(lines) else ""
+            text = lines[i + 2].strip() if i + 2 < len(lines) else ""
+            fatal = any("Fatal" in x for x in lines[i + 3:i + 6])
+            if fatal or not msg:
+                msg = f"{code} in {origin}: {text}"
+    return msg
+
+
 def _gzip(path):
     with open(path, "rb") as src, gzip.open(str(path) + ".gz", "wb") as dst:
         shutil.copyfileobj(src, dst)
@@ -95,6 +113,10 @@ def run_one(st, variant, physics, src, args, gdml_dir, runs_dir, jsonl):
             rec["status"] = "ok" if summary["events"] == events else "incomplete"
         else:
             rec["status"] = "failed"
+    if rec["status"] != "ok":
+        err = _g4_error(rdir / "g4.log")
+        if err:
+            rec["error"] = err
 
     if rec["status"] == "ok":
         if (rdir / "events.csv").exists():
@@ -168,6 +190,8 @@ def main(argv=None):
                 extra += f"  OVERLAPS={rec['overlaps']}"
             if rec.get("vti_error"):
                 extra += f"  vti: {rec['vti_error']}"
+            if rec.get("error"):
+                extra += f"\n      {rec['error']}"
             print(f"[{i}/{len(todo)}] {rec['key']}: {rec['status']} "
                   f"({rec['seconds']} s){extra}", flush=True)
             failed += rec["status"] != "ok"

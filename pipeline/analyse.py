@@ -304,8 +304,10 @@ def analyse(study, results=None):
             flags.append({"severity": "info", "kind": "runs", "message": f"{key}: not run"})
             continue
         if rec["status"] != "ok":
+            why = f": {rec['error']}" if rec.get("error") else ""
             flags.append({"severity": "high", "kind": "runs",
-                          "message": f"{key}: {rec['status']} (see {rec['run_dir']}/g4.log)"})
+                          "message": f"{key}: {rec['status']}{why} "
+                                     f"(see {rec['run_dir']}/g4.log)"})
             continue
         run_dir = out / rec["run_dir"]
         summary = json.loads((run_dir / "summary.json").read_text())

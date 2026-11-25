@@ -199,24 +199,29 @@ void Recorder::WriteSummary(const G4Run* run, G4double seconds) const
   }
   out << "  },\n";
 
-  out << "  \"volumes\": [\n";
-  const G4LogicalVolumeStore* store = G4LogicalVolumeStore::GetInstance();
-  for (std::size_t i = 0; i < store->size(); ++i) {
-    G4LogicalVolume* lv = (*store)[i];
+  // Volumes of the geometry read from GDML.  Volumes without a material are
+  // skipped: they belong to parallel worlds (the scoring mesh), and
+  // G4LogicalVolume::GetMass() aborts on them.
+  out << "  \"volumes\": [";
+  G4bool first = true;
+  for (G4LogicalVolume* lv : *G4LogicalVolumeStore::GetInstance()) {
     const G4Material* mat = lv->GetMaterial();
+    if (mat == nullptr) {
+      continue;
+    }
     const G4VSensitiveDetector* sd = lv->GetSensitiveDetector();
+    out << (first ? "\n" : ",\n");
+    first = false;
     out << "    {\"name\": " << Quote(lv->GetName())
-        << ", \"material\": " << Quote(mat != nullptr ? mat->GetName() : "")
-        << ", \"density_g_cm3\": " << (mat != nullptr ? mat->GetDensity() / (g / cm3) : 0.)
-        << ", \"radlen_mm\": " << (mat != nullptr ? mat->GetRadlen() / mm : 0.)
-        << ", \"nuclear_int_length_mm\": "
-        << (mat != nullptr ? mat->GetNuclearInterLength() / mm : 0.)
+        << ", \"material\": " << Quote(mat->GetName())
+        << ", \"density_g_cm3\": " << mat->GetDensity() / (g / cm3)
+        << ", \"radlen_mm\": " << mat->GetRadlen() / mm
+        << ", \"nuclear_int_length_mm\": " << mat->GetNuclearInterLength() / mm
         << ", \"mass_kg\": " << lv->GetMass(true, false) / kg
         << ", \"placements\": " << Placements(lv)
         << ", \"daughters\": " << lv->GetNoDaughters()
-        << ", \"sensdet\": " << Quote(sd != nullptr ? sd->GetName() : "") << "}"
-        << (i + 1 < store->size() ? ",\n" : "\n");
+        << ", \"sensdet\": " << Quote(sd != nullptr ? sd->GetName() : "") << "}";
   }
-  out << "  ]\n";
+  out << "\n  ]\n";
   out << "}\n";
 }
