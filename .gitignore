@@ -1,6 +1,9 @@
 # pipeline outputs (keep reviews you want under docs/results/)
 /results/
 
+# machine-specific settings (see pipeline/local.env.example)
+pipeline/local.env
+
 # Geant4 application build
 g4app/build/
 

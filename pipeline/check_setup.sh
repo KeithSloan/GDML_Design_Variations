@@ -10,6 +10,9 @@
 # Python: $PYTHON if set, else the active conda environment's python3, else
 # python3 on the PATH - the same choice as run_all.sh.
 set -u
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+. "$REPO/pipeline/_env.sh"
+gdv_load_local_env "$REPO"
 
 quiet=0
 [ "${1:-}" = "-q" ] && quiet=1

@@ -78,6 +78,25 @@ name = "Concrete_100mm"
 material = "G4_CONCRETE"
 thickness_mm = 100.0
 
+# --- round 2 (proposed in docs/results/round1/shield/REVIEW.md, approved)
+[[variants]]
+name = "W_12mm"
+material = "G4_W"
+thickness_mm = 11.76
+note = "round 2: same areal density as Pb_20mm (22.7 g/cm2) - Pb vs W per mass"
+
+[[variants]]
+name = "Fe_29mm"
+material = "G4_Fe"
+thickness_mm = 28.83
+note = "round 2: same areal density as Pb_20mm (22.7 g/cm2)"
+
+[[variants]]
+name = "Pb_40mm"
+material = "G4_Pb"
+thickness_mm = 40.0
+note = "round 2: build-up and effective attenuation beyond 20 mm"
+
 [physics]
 # EM options matter for photons: standard (opt0), opt4, Livermore.
 lists = ["FTFP_BERT", "FTFP_BERT_EMZ", "FTFP_BERT_LIV"]

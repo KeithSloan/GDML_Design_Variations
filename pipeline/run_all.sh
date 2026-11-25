@@ -19,10 +19,13 @@
 # RENDER_3D=1   also 3D views (needs the vtk Python package)
 # FREECAD       FreeCAD.app or executable for step 1 (see gen_gdml.sh)
 # PYTHON        Python to use (default: the active conda environment's)
+# Any of these can be set once in pipeline/local.env (see local.env.example).
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO"
+. "$REPO/pipeline/_env.sh"
+gdv_load_local_env "$REPO"
 
 # Same choice as check_setup.sh: never a Homebrew/system python3 when a
 # conda environment is active and has its own.

@@ -1,7 +1,7 @@
 physics_list,hadronic,em_physics,source,particle,energy_MeV,position_mm,beam,events,mesh,runs_per_setting
-FTFP_BERT,FTFP_BERT,list default,Cs137_cone,gamma,0.661657,0 0 -100,"point, cone 30 deg about +z",100000,yes,6
-FTFP_BERT,FTFP_BERT,list default,Cs137_pencil,gamma,0.661657,0 0 -100,pencil 0 0 1,50000,yes,6
-FTFP_BERT_EMZ,FTFP_BERT,standard option 4,Cs137_cone,gamma,0.661657,0 0 -100,"point, cone 30 deg about +z",100000,no,6
-FTFP_BERT_EMZ,FTFP_BERT,standard option 4,Cs137_pencil,gamma,0.661657,0 0 -100,pencil 0 0 1,50000,no,6
-FTFP_BERT_LIV,FTFP_BERT,Livermore,Cs137_cone,gamma,0.661657,0 0 -100,"point, cone 30 deg about +z",100000,no,6
-FTFP_BERT_LIV,FTFP_BERT,Livermore,Cs137_pencil,gamma,0.661657,0 0 -100,pencil 0 0 1,50000,no,6
+FTFP_BERT,FTFP_BERT,list default,Cs137_cone,gamma,0.661657,0 0 -100,"point, cone 30 deg about +z",100000,yes,9
+FTFP_BERT,FTFP_BERT,list default,Cs137_pencil,gamma,0.661657,0 0 -100,pencil 0 0 1,50000,yes,9
+FTFP_BERT_EMZ,FTFP_BERT,standard option 4,Cs137_cone,gamma,0.661657,0 0 -100,"point, cone 30 deg about +z",100000,no,9
+FTFP_BERT_EMZ,FTFP_BERT,standard option 4,Cs137_pencil,gamma,0.661657,0 0 -100,pencil 0 0 1,50000,no,9
+FTFP_BERT_LIV,FTFP_BERT,Livermore,Cs137_cone,gamma,0.661657,0 0 -100,"point, cone 30 deg about +z",100000,no,9
+FTFP_BERT_LIV,FTFP_BERT,Livermore,Cs137_pencil,gamma,0.661657,0 0 -100,pencil 0 0 1,50000,no,9

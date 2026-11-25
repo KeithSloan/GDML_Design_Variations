@@ -76,6 +76,23 @@ active_mm = 4.0
 layers = 60
 note = "liquid-argon active layers"
 
+# --- round 2 (proposed in docs/results/round1/calorimeter/REVIEW.md, approved)
+[[variants]]
+name = "W0p7_Sc2_x120"
+absorber_material = "G4_W"
+absorber_mm = 0.7
+active_mm = 2.0
+layers = 120
+note = "round 2: fine tungsten sampling - Pb1_Sc2 resolution in 324 mm?"
+
+[[variants]]
+name = "Pb1_LAr2_x120"
+active_material = "G4_lAr"
+absorber_mm = 1.0
+active_mm = 2.0
+layers = 120
+note = "round 2: as Pb1_Sc2_x120 with liquid argon - LAr vs scintillator"
+
 [physics]
 # Hadronic models differ (FTFP_BERT vs QGSP_BIC); EMZ = EM option 4.
 lists = ["FTFP_BERT", "QGSP_BIC", "FTFP_BERT_EMZ"]

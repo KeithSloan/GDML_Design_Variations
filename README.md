@@ -88,7 +88,13 @@ conda activate gdml-variations
 #   or, to add what is missing to an existing Geant4 environment:
 #   conda env update -n g4 -f environment.yml && conda deactivate && conda activate g4
 pipeline/check_setup.sh                    # every line ok (FreeCAD lines may warn)
+cp pipeline/local.env.example pipeline/local.env   # then set FREECAD etc. for this machine
 ```
+
+`pipeline/local.env` (not committed) holds machine-specific settings such
+as which FreeCAD generates the GDML.  Otherwise the scripts use the newest
+`/Applications/FreeCAD*.app`.  A variable set on the command line overrides
+it.
 
 `requirements.txt` lists the Python packages for pip users, but the conda
 environment is the supported setup.
@@ -156,17 +162,18 @@ and opens in ParaView or any VTK program.
 
 ## Status
 
-- `gdmlvar` builds and runs with Geant4 11.4.3 from conda-forge on macOS
-  (arm64), and the GDML for all three studies has been generated with
-  FreeCAD 1.1.4 and GDML workbench 2.2.16.  The first quick run found a
-  crash in runs writing the scoring mesh, since fixed.
-- `pipeline/check_setup.sh` and the CMake dependency lookup are tested
-  against stand-in environments (missing expat headers, missing data sets,
-  a Python outside the environment).
-- The Python stages pass `tests/test_pipeline.py`, every variant passes
-  `tests/test_builds.py`, and the variation tables pass `tests/test_csv.py`.
-- The first end-to-end run, with FreeCAD and Geant4 on one machine, is the
-  next step.  The paper's results section is waiting for it.
+- **Round 1 complete** (25 Nov 2026): all three studies at full statistics.
+  - 102/102 Geant4 runs on macOS (arm64), Geant4 11.4.3 from conda-forge.
+  - GDML from FreeCAD 1.1.4 and GDML workbench 2.2.16.
+  - Reviews, tables and plots are in
+    [docs/results/round1](docs/results/round1/README.md), and the paper's
+    results section covers them.
+- **Round 2 ready to run:** the variants the reviews proposed were
+  approved, and are now in the studies' `study.toml`.
+- **Tests:** the Python stages pass `tests/test_pipeline.py`, every variant
+  passes `tests/test_builds.py`, and the variation tables pass
+  `tests/test_csv.py`.  `pipeline/check_setup.sh` is tested against
+  stand-in environments.
 
 ## Licence
 

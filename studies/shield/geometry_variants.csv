@@ -9,3 +9,6 @@ Fe_20mm,300,10,150,G4_Fe,20,Fe_20mm.gdml,
 Fe_40mm,300,10,150,G4_Fe,40,Fe_40mm.gdml,
 Concrete_50mm,300,10,150,G4_CONCRETE,50,Concrete_50mm.gdml,
 Concrete_100mm,300,10,150,G4_CONCRETE,100,Concrete_100mm.gdml,
+W_12mm,300,10,150,G4_W,11.76,W_12mm.gdml,round 2: same areal density as Pb_20mm (22.7 g/cm2) - Pb vs W per mass
+Fe_29mm,300,10,150,G4_Fe,28.83,Fe_29mm.gdml,round 2: same areal density as Pb_20mm (22.7 g/cm2)
+Pb_40mm,300,10,150,G4_Pb,40,Pb_40mm.gdml,round 2: build-up and effective attenuation beyond 20 mm

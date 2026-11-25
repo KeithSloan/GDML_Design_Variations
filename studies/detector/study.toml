@@ -79,6 +79,28 @@ material = "LaBr3"
 radius_mm = 19.05
 length_mm = 38.1
 
+# --- round 2 (proposed in docs/results/round1/detector/REVIEW.md, approved)
+[[variants]]
+name = "BGO_2in"
+material = "G4_BGO"
+radius_mm = 25.4
+length_mm = 50.8
+note = "round 2: does BGO's lead persist at a larger size?"
+
+[[variants]]
+name = "BGO_eqmass_NaI3in"
+material = "G4_BGO"
+radius_mm = 30.5
+length_mm = 61.1
+note = "round 2: same mass as NaI_3in (1.27 kg), length = diameter"
+
+[[variants]]
+name = "LYSO_2in"
+material = "LYSO"
+radius_mm = 25.4
+length_mm = 50.8
+note = "round 2: LYSO at the size of BGO_2in"
+
 [physics]
 lists = ["FTFP_BERT", "FTFP_BERT_EMZ", "FTFP_BERT_LIV"]
 

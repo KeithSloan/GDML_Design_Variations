@@ -1,7 +1,7 @@
 physics_list,hadronic,em_physics,source,particle,energy_MeV,position_mm,beam,events,mesh,runs_per_setting
-FTFP_BERT,FTFP_BERT,list default,e_1GeV,e-,1000,0 0 -50,pencil 0 0 1,2000,yes,6
-FTFP_BERT,FTFP_BERT,list default,pi_10GeV,pi+,10000,0 0 -50,pencil 0 0 1,500,yes,6
-QGSP_BIC,QGSP_BIC,list default,e_1GeV,e-,1000,0 0 -50,pencil 0 0 1,2000,no,6
-QGSP_BIC,QGSP_BIC,list default,pi_10GeV,pi+,10000,0 0 -50,pencil 0 0 1,500,no,6
-FTFP_BERT_EMZ,FTFP_BERT,standard option 4,e_1GeV,e-,1000,0 0 -50,pencil 0 0 1,2000,no,6
-FTFP_BERT_EMZ,FTFP_BERT,standard option 4,pi_10GeV,pi+,10000,0 0 -50,pencil 0 0 1,500,no,6
+FTFP_BERT,FTFP_BERT,list default,e_1GeV,e-,1000,0 0 -50,pencil 0 0 1,2000,yes,8
+FTFP_BERT,FTFP_BERT,list default,pi_10GeV,pi+,10000,0 0 -50,pencil 0 0 1,500,yes,8
+QGSP_BIC,QGSP_BIC,list default,e_1GeV,e-,1000,0 0 -50,pencil 0 0 1,2000,no,8
+QGSP_BIC,QGSP_BIC,list default,pi_10GeV,pi+,10000,0 0 -50,pencil 0 0 1,500,no,8
+FTFP_BERT_EMZ,FTFP_BERT,standard option 4,e_1GeV,e-,1000,0 0 -50,pencil 0 0 1,2000,no,8
+FTFP_BERT_EMZ,FTFP_BERT,standard option 4,pi_10GeV,pi+,10000,0 0 -50,pencil 0 0 1,500,no,8

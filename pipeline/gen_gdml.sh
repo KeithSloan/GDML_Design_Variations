@@ -15,6 +15,8 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+. "$REPO/pipeline/_env.sh"
+gdv_load_local_env "$REPO"
 [ $# -ge 1 ] || { echo "usage: $0 STUDY [STUDY ...]" >&2; exit 2; }
 
 fc="${FREECAD:-}"

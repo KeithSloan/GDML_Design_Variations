@@ -5,3 +5,6 @@ CsI_1p5in,1,G4_Al,5,G4_CESIUM_IODIDE,19.05,38.1,CsI_1p5in.gdml,
 BGO_1p5in,1,G4_Al,5,G4_BGO,19.05,38.1,BGO_1p5in.gdml,
 LYSO_1p5in,1,G4_Al,5,LYSO,19.05,38.1,LYSO_1p5in.gdml,
 LaBr3_1p5in,1,G4_Al,5,LaBr3,19.05,38.1,LaBr3_1p5in.gdml,
+BGO_2in,1,G4_Al,5,G4_BGO,25.4,50.8,BGO_2in.gdml,round 2: does BGO's lead persist at a larger size?
+BGO_eqmass_NaI3in,1,G4_Al,5,G4_BGO,30.5,61.1,BGO_eqmass_NaI3in.gdml,"round 2: same mass as NaI_3in (1.27 kg), length = diameter"
+LYSO_2in,1,G4_Al,5,LYSO,25.4,50.8,LYSO_2in.gdml,round 2: LYSO at the size of BGO_2in
