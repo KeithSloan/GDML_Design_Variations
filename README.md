@@ -62,21 +62,45 @@ the detector study also tests custom materials through GDML into Geant4.
 
 ## Requirements
 
-- FreeCAD 1.1 with the GDML workbench, including its `GDMLDesign` scripting
-  API (Main branch, 2.2.16 or later)
-- Geant4 11 built with GDML (e.g. conda-forge `geant4`), its data sets,
-  CMake and a C++17 compiler
-- Python 3.11+ with numpy and matplotlib; vtk for 3D renders
-  (`python3 -m pip install -r requirements.txt`)
+- **FreeCAD 1.1** with the GDML workbench, including its `GDMLDesign`
+  scripting API (Main branch, 2.2.16 or later).  Only needed to generate
+  GDML.
+- **One conda environment** with everything else, from
+  [environment.yml](environment.yml) (conda-forge):
+  - Geant4 11.4 with GDML and its data sets;
+  - expat, CMake, make and a C++ compiler, to build `g4app`;
+  - Python 3.11+ with numpy, matplotlib and vtk.
+
+Geant4, the compiler and Python must all come from that one environment.
+Two mix-ups break the pipeline on macOS:
+- If the environment has no Python of its own, `python3` falls through to
+  Homebrew's or the system's.
+- If the environment has no expat headers, CMake takes the older expat in
+  the macOS SDK, and `find_package(Geant4)` fails.
+
+`pipeline/check_setup.sh` reports both, and `run_all.sh` runs it first.
+
+## Setup
+
+```bash
+conda env create -f environment.yml        # new environment "gdml-variations"
+conda activate gdml-variations
+#   or, to add what is missing to an existing Geant4 environment:
+#   conda env update -n g4 -f environment.yml && conda deactivate && conda activate g4
+pipeline/check_setup.sh                    # every line ok (FreeCAD lines may warn)
+```
+
+`requirements.txt` lists the Python packages for pip users, but the conda
+environment is the supported setup.
 
 ## Quick start
 
 ```bash
-conda activate g4                          # Geant4 environment
-python3 -m pip install -r requirements.txt
-pipeline/run_all.sh shield                 # GDML, build, runs, analysis
-EVENTS_SCALE=0.05 pipeline/run_all.sh      # all studies, quick look
+EVENTS_SCALE=0.05 pipeline/run_all.sh shield   # quick look: GDML, build, runs, analysis
+pipeline/run_all.sh                            # all studies, full statistics
 ```
+
+Close FreeCAD first: `run_all.sh` starts its own copy to generate the GDML.
 
 Then ask for the review of `results/shield/review_input.md` (stage 5).
 
@@ -124,6 +148,8 @@ and opens in ParaView or any VTK program.
 | `g4app/` | `gdmlvar`: GDML geometry, `SensDet` volumes as detectors, any reference physics list by name, GPS source, scoring mesh |
 | `pipeline/` | the scripted stages |
 | `tests/` | `test_builds.py` (geometry of every variant, no FreeCAD needed), `test_pipeline.py` (all scripts against a stand-in for Geant4), `test_csv.py` (variation tables up to date) |
+| `environment.yml` | the conda environment (Geant4, build tools, Python packages) |
+| `pipeline/check_setup.sh` | checks the environment and says what to fix |
 | `tools/export_csv.py` | writes the variation tables from `study.toml` (`--check` to verify) |
 | `tools/attenuation_refs.py` | regenerates the NIST reference coefficients |
 | `docs/` | workflow, review guide, [paper](docs/PAPER.md) |
@@ -132,6 +158,9 @@ and opens in ParaView or any VTK program.
 
 - `gdmlvar` compiles against the Geant4 11.4.3 headers.  It has not yet
   been built and run against a full Geant4 install.
+- `pipeline/check_setup.sh` and the CMake dependency lookup are tested
+  against stand-in environments (missing expat headers, missing data sets,
+  a Python outside the environment).
 - The Python stages pass `tests/test_pipeline.py`, every variant passes
   `tests/test_builds.py`, and the variation tables pass `tests/test_csv.py`.
 - The first end-to-end run, with FreeCAD and Geant4 on one machine, is the

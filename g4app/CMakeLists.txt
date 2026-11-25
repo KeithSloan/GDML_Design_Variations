@@ -7,6 +7,13 @@
 cmake_minimum_required(VERSION 3.16)
 project(gdmlvar CXX)
 
+# In a conda environment, look for Geant4's dependencies (expat, xerces-c,
+# CLHEP, ...) there first.  Otherwise CMake can pick the older copies in the
+# macOS SDK or /usr, and find_package(Geant4) fails on their version.
+if(DEFINED ENV{CONDA_PREFIX})
+  list(PREPEND CMAKE_PREFIX_PATH "$ENV{CONDA_PREFIX}")
+endif()
+
 find_package(Geant4 REQUIRED gdml)
 include(${Geant4_USE_FILE})
 

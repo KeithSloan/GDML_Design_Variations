@@ -41,6 +41,11 @@ may run them when the user asks, as you would any command, but:
   live in `study.toml`; `geometry_variants.csv` and `physics_variants.csv`
   are generated from it by `tools/export_csv.py`.  Never edit the CSVs.
 - `pipeline/study.py` is standard library only: FreeCAD imports it.
+- Setup is one conda environment (`environment.yml`): Geant4, expat, CMake,
+  compiler and Python together.  When the user reports a setup or build
+  error, start with `pipeline/check_setup.sh`.  Keep `environment.yml`,
+  `requirements.txt`, `check_setup.sh` and the README's Requirements in step
+  when dependencies change.
 - Units: mm, MeV, g/cm3 throughout, as in the file and key names.
 
 ## Checks before committing

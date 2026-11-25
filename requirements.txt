@@ -1,7 +1,10 @@
-# Python packages for the pipeline (install into the Python that runs it,
-# e.g. the conda "g4" environment):  python3 -m pip install -r requirements.txt
+# Python packages for the pipeline.  The recommended setup is the conda
+# environment in environment.yml, which has these plus Geant4.  Use this
+# file only to add them to a Python that already shares an environment with
+# Geant4:  python3 -m pip install -r requirements.txt
+# (pipeline/check_setup.sh reports which python3 the pipeline will use).
 numpy>=1.24
 matplotlib>=3.7
-vtk>=9.2          # optional: 3D renders (render.py --3d) and reading .vti in VTK
+vtk>=9.2          # 3D renders (render.py --3d) and reading .vti in VTK
 # Only for tools/attenuation_refs.py (regenerating the reference values):
 # xraydb>=4.5

@@ -302,8 +302,10 @@ and `REVIEW.md`, and will be copied under `docs/results/`.
 
 ## 8. Reproducibility
 
-Every run records its seed, macro, GDML file, physics list, Geant4
-version and warnings.  Every GDML file records its parameters, design tree
+The software environment is one conda-forge environment
+(`environment.yml`: Geant4 with its data sets, build tools, Python
+packages), checked by `pipeline/check_setup.sh`.  Every run records its
+seed, macro, GDML file, physics list, Geant4 version and warnings.  Every GDML file records its parameters, design tree
 and the FreeCAD, workbench and repository versions.  Re-running a study
 with the same inputs reproduces the same numbers.  The code is available
 under the GPL-3.0-or-later.

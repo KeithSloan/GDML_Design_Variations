@@ -60,7 +60,7 @@ The two CSV tables show the n and the m.
 On the machine with FreeCAD and Geant4 (e.g. your Mac):
 
 ```bash
-conda activate g4                  # Geant4 and its data sets
+conda activate gdml-variations     # environment.yml: Geant4, build tools, Python
 pipeline/run_all.sh shield         # stages 3-4a; resumes if interrupted
 ```
 

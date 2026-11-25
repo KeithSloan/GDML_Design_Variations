@@ -5,6 +5,9 @@ data, and improvements to the Geant4 application or the pipeline.
 
 - Open an issue to discuss larger changes first.
 - Work on a branch and open a pull request against `main`.
+- Set up with [environment.yml](environment.yml) and check with
+  `pipeline/check_setup.sh`.  A new dependency goes into `environment.yml`,
+  `requirements.txt` (if Python) and `check_setup.sh` together.
 - New studies follow [studies/README.md](studies/README.md).  Give every
   metric an error estimate and, where one exists, a reference value.
 - Before a pull request, run:

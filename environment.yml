@@ -1,0 +1,27 @@
+# Everything the pipeline needs except FreeCAD, in one conda environment:
+# Geant4 with GDML and its data sets, the toolchain to build g4app, and the
+# Python packages.  Python must come from this environment - not from
+# Homebrew or the system - so that the scripts and Geant4 share it.
+#
+# New environment:
+#   conda env create -f environment.yml
+#   conda activate gdml-variations
+#
+# Or add what is missing to an existing Geant4 environment (e.g. "g4"):
+#   conda env update -n g4 -f environment.yml
+#   conda deactivate && conda activate g4
+#
+# Then check:  pipeline/check_setup.sh
+name: gdml-variations
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.11          # tomllib
+  - geant4>=11.4          # GDML (xerces-c) and the geant4-data-* packages
+  - expat                 # headers Geant4's CMake config looks for
+  - cmake>=3.16
+  - make
+  - cxx-compiler
+  - numpy>=1.24
+  - matplotlib>=3.7
+  - vtk>=9.2              # 3D renders, reading mesh.vti
