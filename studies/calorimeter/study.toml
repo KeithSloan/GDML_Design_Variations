@@ -1,0 +1,123 @@
+# Calorimeter: a sampling calorimeter of alternating absorber and active
+# layers.  Which sampling structure gives the best energy resolution, and
+# how much do the physics lists disagree for hadron showers?
+# Built by build.py, analysed by metrics.py.
+
+[study]
+name = "calorimeter"
+title = "Sampling calorimeter (1 GeV electrons, 10 GeV pions)"
+description = """
+Alternating absorber and active layers, 200 x 200 mm, starting at z = 0,
+inside a vacuum envelope.  Every absorber and active layer is a sensitive
+detector (copy number = layer), so the analysis has the energy deposited in
+each, per event.  The variants change the absorber, the active medium, the
+layer thicknesses and the number of layers, at roughly constant depth in
+radiation lengths for electrons.
+"""
+objective = """
+Best electromagnetic energy resolution (sigma/E of the active-layer signal
+for 1 GeV electrons) for a compact depth, and an e/pi signal ratio close to
+1; note where the physics lists disagree for pions.
+"""
+primary_metric = "resolution"
+better = "lower"
+
+[world]
+size_mm = [400.0, 400.0, 1400.0]
+material = "G4_Galactic"
+
+[defaults]
+width_mm = 200.0
+absorber_material = "G4_Pb"
+active_material = "G4_PLASTIC_SC_VINYLTOLUENE"
+
+[[variants]]
+name = "Pb2_Sc4_x60"
+absorber_mm = 2.0
+active_mm = 4.0
+layers = 60
+note = "baseline, about 21 X0"
+
+[[variants]]
+name = "Pb4_Sc4_x30"
+absorber_mm = 4.0
+active_mm = 4.0
+layers = 30
+note = "coarser sampling, same lead"
+
+[[variants]]
+name = "Pb1_Sc2_x120"
+absorber_mm = 1.0
+active_mm = 2.0
+layers = 120
+note = "finer sampling, same lead"
+
+[[variants]]
+name = "W1p4_Sc4_x60"
+absorber_material = "G4_W"
+absorber_mm = 1.4
+active_mm = 4.0
+layers = 60
+note = "compact tungsten version"
+
+[[variants]]
+name = "Fe6_Sc4_x60"
+absorber_material = "G4_Fe"
+absorber_mm = 6.0
+active_mm = 4.0
+layers = 60
+note = "iron, about 20 X0 but 600 mm deep"
+
+[[variants]]
+name = "Pb2_LAr4_x60"
+active_material = "G4_lAr"
+absorber_mm = 2.0
+active_mm = 4.0
+layers = 60
+note = "liquid-argon active layers"
+
+[physics]
+# Hadronic models differ (FTFP_BERT vs QGSP_BIC); EMZ = EM option 4.
+lists = ["FTFP_BERT", "QGSP_BIC", "FTFP_BERT_EMZ"]
+
+[[sources]]
+name = "e_1GeV"
+particle = "e-"
+energy_MeV = 1000.0
+position_mm = [0.0, 0.0, -50.0]
+direction = [0.0, 0.0, 1.0]
+events = 2000
+
+[[sources]]
+name = "pi_10GeV"
+particle = "pi+"
+energy_MeV = 10000.0
+position_mm = [0.0, 0.0, -50.0]
+direction = [0.0, 0.0, 1.0]
+events = 500
+
+[mesh]
+half_size_mm = [100.0, 100.0, 310.0]
+centre_mm = [0.0, 0.0, 310.0]
+bins = [40, 40, 124]
+physics = ["FTFP_BERT"]
+
+[analysis]
+compare = ["resolution", "sampling_fraction", "containment", "e_over_pi"]
+plot = ["resolution", "sampling_fraction", "containment", "stochastic_term",
+        "e_over_pi"]
+
+[reference]
+# Minimum-ionising dE/dx (MeV cm2/g), PDG Atomic and Nuclear Properties
+# (pdg.lbl.gov/AtomicNuclearProperties; not re-checked against the site),
+# for the MIP sampling fraction f_mip used to check sampling_fraction.
+# Expected e/mip for electron showers: about 0.6-0.9 (lower for high Z).
+[reference.dedx_min_MeV_cm2_g]
+"G4_Pb" = 1.122
+"G4_W" = 1.145
+"G4_Fe" = 1.451
+"G4_PLASTIC_SC_VINYLTOLUENE" = 1.956
+"G4_lAr" = 1.519
+
+[checks]
+e_over_mip_range = [0.55, 1.0]

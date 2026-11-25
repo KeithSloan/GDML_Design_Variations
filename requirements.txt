@@ -1,0 +1,7 @@
+# Python packages for the pipeline (install into the Python that runs it,
+# e.g. the conda "g4" environment):  python3 -m pip install -r requirements.txt
+numpy>=1.24
+matplotlib>=3.7
+vtk>=9.2          # optional: 3D renders (render.py --3d) and reading .vti in VTK
+# Only for tools/attenuation_refs.py (regenerating the reference values):
+# xraydb>=4.5

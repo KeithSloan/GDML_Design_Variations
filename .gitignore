@@ -1,0 +1,21 @@
+# pipeline outputs (keep reviews you want under docs/results/)
+results/
+
+# Geant4 application build
+g4app/build/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# FreeCAD
+*.FCStd1
+*.FCBak
+*.gdml.log
+
+# editors and OS
+.DS_Store
+*.swp
+.vscode/
+.idea/

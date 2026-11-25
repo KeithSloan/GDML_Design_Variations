@@ -1,0 +1,128 @@
+# Detector: a cylindrical scintillation crystal in an aluminium housing,
+# viewing a Cs-137 point source.  Which crystal material and size gives the
+# highest full-energy-peak efficiency?
+# Built by build.py, analysed by metrics.py.
+
+[study]
+name = "detector"
+title = "Gamma-ray crystal detector (Cs-137, 662 keV)"
+description = """
+A cylindrical crystal (axis along z, front face 1 mm behind z = 0) inside a
+1 mm aluminium housing.  A 662 keV point source 100 mm in front emits into a
+30 degree cone about the axis.  A thin vacuum monitor disc behind the
+detector counts photons of a second, pencil-beam source that cross the
+detector without interacting - a check of the crystal's attenuation, and so
+of the material definitions, against NIST data.  The variants change the
+crystal material (including two defined here with addMaterial) and size.
+"""
+objective = """
+Highest absolute full-energy-peak efficiency at 662 keV; report the
+peak-to-total ratio and crystal mass as the trade-offs.
+"""
+primary_metric = "peak_efficiency_abs"
+better = "higher"
+
+[world]
+size_mm = [300.0, 300.0, 500.0]
+material = "G4_Galactic"
+
+# Materials not in Geant4's NIST list, defined in every document with
+# GDMLDesign.addMaterial (formula = atoms per formula unit).
+[materials.LYSO]
+density = "7.1 g/cm3"
+formula = "Lu9Y1Si5O25"        # Lu1.8 Y0.2 SiO5 (Ce doping ignored)
+
+[materials.LaBr3]
+density = "5.08 g/cm3"
+formula = "LaBr3"              # Ce doping ignored
+
+[defaults]
+housing_mm = 1.0
+housing_material = "G4_Al"
+monitor_gap_mm = 5.0
+
+[[variants]]
+name = "NaI_1p5in"
+material = "G4_SODIUM_IODIDE"
+radius_mm = 19.05
+length_mm = 38.1
+note = "1.5 x 1.5 inch NaI(Tl), reference"
+
+[[variants]]
+name = "NaI_3in"
+material = "G4_SODIUM_IODIDE"
+radius_mm = 38.1
+length_mm = 76.2
+note = "3 x 3 inch NaI(Tl)"
+
+[[variants]]
+name = "CsI_1p5in"
+material = "G4_CESIUM_IODIDE"
+radius_mm = 19.05
+length_mm = 38.1
+
+[[variants]]
+name = "BGO_1p5in"
+material = "G4_BGO"
+radius_mm = 19.05
+length_mm = 38.1
+
+[[variants]]
+name = "LYSO_1p5in"
+material = "LYSO"
+radius_mm = 19.05
+length_mm = 38.1
+
+[[variants]]
+name = "LaBr3_1p5in"
+material = "LaBr3"
+radius_mm = 19.05
+length_mm = 38.1
+
+[physics]
+lists = ["FTFP_BERT", "FTFP_BERT_EMZ", "FTFP_BERT_LIV"]
+
+[[sources]]
+name = "Cs137_cone"
+particle = "gamma"
+energy_MeV = 0.661657
+position_mm = [0.0, 0.0, -100.0]
+cone_half_angle_deg = 30.0
+events = 100000
+note = "covers the largest crystal (3 inch at 100 mm subtends 21 deg)"
+
+[[sources]]
+name = "Cs137_pencil"
+particle = "gamma"
+energy_MeV = 0.661657
+position_mm = [0.0, 0.0, -100.0]
+direction = [0.0, 0.0, 1.0]
+events = 50000
+note = "attenuation check through the detector axis"
+
+[mesh]
+half_size_mm = [50.0, 50.0, 60.0]
+centre_mm = [0.0, 0.0, 45.0]
+bins = [50, 50, 60]
+physics = ["FTFP_BERT"]
+
+[analysis]
+compare = ["peak_efficiency_abs", "total_efficiency_abs", "peak_to_total",
+           "uncollided_fraction"]
+plot = ["peak_efficiency_abs", "total_efficiency_abs", "peak_to_total",
+        "uncollided_fraction"]
+
+[reference]
+# mu/rho (cm2/g, with coherent) at 661.657 keV from tools/attenuation_refs.py
+[reference.mu_rho_cm2_g]
+"G4_Al" = 0.07466
+"G4_SODIUM_IODIDE" = 0.076649
+"G4_CESIUM_IODIDE" = 0.077555
+"G4_BGO" = 0.099826
+"LYSO" = 0.089113
+"LaBr3" = 0.074094
+
+[checks]
+uncollided_rel_tol = 0.02
+peak_window_MeV = 0.002        # full-energy peak: E >= E0 - window
+threshold_MeV = 0.010          # counted at all: E >= threshold

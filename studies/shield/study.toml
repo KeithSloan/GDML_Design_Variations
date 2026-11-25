@@ -1,0 +1,116 @@
+# Shield: a slab of shielding material between a Cs-137 gamma beam and a
+# water phantom.  Which material and thickness gives the lowest dose?
+# Built by build.py, analysed by metrics.py.
+
+[study]
+name = "shield"
+title = "Gamma shield slab (Cs-137, 662 keV)"
+description = """
+A pencil beam of 662 keV photons (Cs-137) along +z hits a 300 x 300 mm slab
+of shielding material (front face at z = 0).  A 10 mm water phantom at
+z = 150 mm records the dose behind it.  The variants change the shield
+material and thickness; No_shield is the reference for the transmission.
+"""
+objective = """
+Lowest dose behind the shield, and lowest dose for a given mass per unit
+area (areal density) - the trade-off when weight matters.
+"""
+primary_metric = "dose_transmission"
+better = "lower"
+
+[world]
+size_mm = [400.0, 400.0, 400.0]   # centred on the origin
+material = "G4_Galactic"          # vacuum, so only the shield attenuates
+
+[defaults]
+width_mm = 300.0
+phantom_mm = 10.0
+phantom_front_mm = 150.0
+
+[[variants]]
+name = "No_shield"
+material = "G4_Pb"
+thickness_mm = 0.0
+note = "reference for the transmission"
+
+[[variants]]
+name = "Pb_5mm"
+material = "G4_Pb"
+thickness_mm = 5.0
+
+[[variants]]
+name = "Pb_10mm"
+material = "G4_Pb"
+thickness_mm = 10.0
+
+[[variants]]
+name = "Pb_20mm"
+material = "G4_Pb"
+thickness_mm = 20.0
+
+[[variants]]
+name = "W_5mm"
+material = "G4_W"
+thickness_mm = 5.0
+
+[[variants]]
+name = "W_10mm"
+material = "G4_W"
+thickness_mm = 10.0
+
+[[variants]]
+name = "Fe_20mm"
+material = "G4_Fe"
+thickness_mm = 20.0
+
+[[variants]]
+name = "Fe_40mm"
+material = "G4_Fe"
+thickness_mm = 40.0
+
+[[variants]]
+name = "Concrete_50mm"
+material = "G4_CONCRETE"
+thickness_mm = 50.0
+
+[[variants]]
+name = "Concrete_100mm"
+material = "G4_CONCRETE"
+thickness_mm = 100.0
+
+[physics]
+# EM options matter for photons: standard (opt0), opt4, Livermore.
+lists = ["FTFP_BERT", "FTFP_BERT_EMZ", "FTFP_BERT_LIV"]
+
+[[sources]]
+name = "Cs137_pencil"
+particle = "gamma"
+energy_MeV = 0.661657
+position_mm = [0.0, 0.0, -150.0]
+direction = [0.0, 0.0, 1.0]
+events = 100000
+
+[mesh]
+# energy deposit on a 5 x 5 x 2 mm grid over shield and phantom
+half_size_mm = [150.0, 150.0, 90.0]
+centre_mm = [0.0, 0.0, 80.0]
+bins = [60, 60, 90]
+physics = ["FTFP_BERT"]
+
+[analysis]
+compare = ["dose_transmission", "uncollided_fraction", "buildup_factor"]
+plot = ["dose_transmission", "uncollided_fraction", "buildup_factor"]
+
+[reference]
+# mu/rho (cm2/g, with coherent scattering) at 661.657 keV, from
+# tools/attenuation_refs.py (Elam tables = NIST Hubbell & Seltzer values).
+# The uncollided fraction reaching the phantom must be exp(-mu/rho * rho * t).
+[reference.mu_rho_cm2_g]
+"G4_Pb" = 0.11016
+"G4_Fe" = 0.073462
+"G4_W" = 0.097805
+"G4_CONCRETE" = 0.077837
+
+[checks]
+# flag a reference mismatch when it exceeds both 3 sigma and this fraction
+uncollided_rel_tol = 0.02
