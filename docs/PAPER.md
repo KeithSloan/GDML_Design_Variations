@@ -248,13 +248,13 @@ the run key, so it is reproducible.  Three metrics follow:
 - peak-to-Compton: peak height over the mean height of the 358–382 keV
   Compton plateau.
 
-### 4.4 Hadron calorimeter (round 2, proposed)
+### 4.4 Hadron calorimeter (round 2)
 
 The round-1 calorimeters were 0.8–2.5 interaction lengths deep, too shallow
 to contain a 10 GeV pion shower, so their pion results could not answer the
 e/π question.  The `hcal` study reuses the calorimeter's geometry and
 metrics (its `build.py` and `metrics.py` load the calorimeter's by path) at
-800 × 800 mm and 1500 mm deep.  The proposed variants are:
+800 × 800 mm and 1500 mm deep.  The variants are:
 - Fe 20 mm / scintillator 5 mm × 60 layers (about 7.5 λ);
 - Fe 10/5 × 100 (about 6.6 λ);
 - Pb 10/2.5 × 120 (about 7.0 λ), lead to scintillator 4:1 by thickness, the

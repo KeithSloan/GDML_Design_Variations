@@ -36,7 +36,7 @@ width_mm = 800.0
 absorber_material = "G4_Fe"
 active_material = "G4_PLASTIC_SC_VINYLTOLUENE"
 
-# Proposed variants - for approval before any run.  Interaction-length
+# Variants approved 25 Nov 2026.  Interaction-length
 # depths estimated from the round-1 calorimeter's Geant4 values
 # (lambda: Fe 170 mm, Pb 183 mm, scintillator 700 mm).
 [[variants]]
