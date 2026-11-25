@@ -68,7 +68,7 @@ def main():
         if t > 0:
             vols.append(vol("Shield", p["material"], DENSITY[p["material"]] * 0.09 * t))
         vols.append(vol("Phantom", "G4_WATER", mass, sd="Phantom"))
-    elif st.name == "calorimeter":
+    elif st.name in ("calorimeter", "hcal"):
         layers = int(p["layers"])
         tot = rng.normal(0.95 * e0 * bias, 0.03 * e0, n).clip(0)
         f = 0.1 * (1 + 0.1 * rng.normal(size=n)) * (0.7 if particle == "pi+" else 1.0)

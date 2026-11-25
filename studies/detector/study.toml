@@ -130,9 +130,30 @@ physics = ["FTFP_BERT"]
 
 [analysis]
 compare = ["peak_efficiency_abs", "total_efficiency_abs", "peak_to_total",
-           "uncollided_fraction"]
+           "uncollided_fraction", "resolved_peak_efficiency_abs", "peak_purity",
+           "peak_to_compton"]
 plot = ["peak_efficiency_abs", "total_efficiency_abs", "peak_to_total",
-        "uncollided_fraction"]
+        "uncollided_fraction", "resolved_peak_efficiency_abs", "peak_purity",
+        "peak_to_compton"]
+
+[resolution]
+# Typical FWHM energy resolution at 662 keV (fraction of the energy) of each
+# crystal with a photomultiplier, applied by metrics.py as Gaussian smearing
+# of the deposited energy (sigma scaling as sqrt(E)).  Proposed in the
+# round-1 detector review so that crystals are compared with a realistic
+# peak window.  Published typical values - real detectors vary with size,
+# quality and readout; edit to match yours.
+#   NaI(Tl) 7 %; CsI(Tl) 8-9 %; BGO 8-12 %: berkeleynucleonics.com
+#     technical note "Choosing a scintillator" (ScintIQ datasheet values)
+#   LYSO 7-8 %: IEEE TechNav, "Solid scintillation detectors"
+#   LaBr3(Ce) 3.0 % typical (berkeleynucleonics.com, LaBr3 datasheet);
+#     2.6 % standard grade (Luxium lanthanum material data sheet)
+[resolution.fwhm_662keV]
+"G4_SODIUM_IODIDE" = 0.070
+"G4_CESIUM_IODIDE" = 0.085
+"G4_BGO" = 0.10
+"LYSO" = 0.075
+"LaBr3" = 0.030
 
 [reference]
 # mu/rho (cm2/g, with coherent) at 661.657 keV from tools/attenuation_refs.py
@@ -148,3 +169,5 @@ plot = ["peak_efficiency_abs", "total_efficiency_abs", "peak_to_total",
 uncollided_rel_tol = 0.02
 peak_window_MeV = 0.002        # full-energy peak: E >= E0 - window
 threshold_MeV = 0.010          # counted at all: E >= threshold
+peak_window_fwhm = 1.0         # resolved peak window: E0 +- this x FWHM
+compton_region_MeV = [0.358, 0.382]   # Compton plateau for peak-to-Compton (Cs-137)

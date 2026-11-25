@@ -236,6 +236,38 @@ Metrics, all from deposited energy with no detector resolution:
 
 The objective is the highest peak efficiency.
 
+Round 1 could not show LaBr₃'s main advantage, its energy resolution, so
+round 2 applies resolution in the analysis.  Each event's deposited energy
+is smeared with a Gaussian of FWHM f·√(E·E₀), where f is the crystal's
+published FWHM at 662 keV (`[resolution]` in `study.toml`: NaI 7.0 %,
+CsI 8.5 %, BGO 10 %, LYSO 7.5 %, LaBr₃ 3.0 %).  The smearing is seeded from
+the run key, so it is reproducible.  Three metrics follow:
+- resolved peak efficiency: full-energy events inside E₀ ± FWHM;
+- peak purity: the fraction of events in that window that are full-energy
+  events, the rest being Compton continuum smeared in;
+- peak-to-Compton: peak height over the mean height of the 358–382 keV
+  Compton plateau.
+
+### 4.4 Hadron calorimeter (round 2, proposed)
+
+The round-1 calorimeters were 0.8–2.5 interaction lengths deep, too shallow
+to contain a 10 GeV pion shower, so their pion results could not answer the
+e/π question.  The `hcal` study reuses the calorimeter's geometry and
+metrics (its `build.py` and `metrics.py` load the calorimeter's by path) at
+800 × 800 mm and 1500 mm deep.  The proposed variants are:
+- Fe 20 mm / scintillator 5 mm × 60 layers (about 7.5 λ);
+- Fe 10/5 × 100 (about 6.6 λ);
+- Pb 10/2.5 × 120 (about 7.0 λ), lead to scintillator 4:1 by thickness, the
+  ratio associated with compensation.
+
+The depths in λ use the interaction lengths Geant4 reported in round 1.
+The sources are 10 GeV electrons and π⁺ (1000 events each).  The physics
+lists are FTFP_BERT, QGSP_BIC and FTFP_BERT_HP; the last adds
+high-precision neutron transport, which matters for the slow-neutron
+signal in hydrogen-rich scintillator.  One metric is added to the
+calorimeter's: the non-compensation |e/π − 1|.  The objective is the best
+pion resolution with e/π close to 1.
+
 ## 5. Validation built into the studies
 
 Each sample study has a check that does not depend on the design question:
@@ -395,10 +427,12 @@ from any single run:
 
 ## 7. Discussion and limitations
 
-- **Deposited energy is not a detector signal.**  No energy resolution,
-  light collection, quenching or electronics are simulated.  Peak
-  efficiencies and resolutions are therefore ideal values, best used to
-  compare variants.
+- **Deposited energy is not a detector signal.**  No light collection,
+  quenching or electronics are simulated.  Calorimeter resolutions and e/π
+  are therefore ideal values, best used to compare variants; Birks
+  quenching in particular changes e/π in scintillator.  The detector
+  study's energy resolution (from round 2) is a published FWHM applied in
+  the analysis, not simulated.
 - **Choice of EM option for photons.**  Round 1 shows the standard EM
   option (FTFP_BERT) attenuating 662 keV photons 1–3 % more than NIST in
   high-Z materials.  For absolute shielding or efficiency numbers at these

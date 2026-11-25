@@ -118,6 +118,10 @@ def extra_plots(contexts, study, outdir, plt):   # optional
     """Study-specific figures; return the list of files written."""
 ```
 
+A study can reuse another's code: `studies/hcal` loads the calorimeter's
+`build.py` and `metrics.py` by path (`importlib.util.spec_from_file_location`)
+and adds one metric.
+
 ## Adding a study
 
 1. Copy a sample study directory and rename it (and `[study] name`).

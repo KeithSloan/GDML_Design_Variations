@@ -20,7 +20,7 @@ sys.path.insert(0, str(REPO))
 from pipeline import study as studylib  # noqa: E402
 
 EXPECTED_SD = {"shield": {"Phantom"}, "calorimeter": {"Absorber", "Active"},
-               "detector": {"Crystal", "Monitor"}}
+               "detector": {"Crystal", "Monitor"}, "hcal": {"Absorber", "Active"}}
 EPS = 1e-6
 
 
@@ -104,7 +104,7 @@ def check_study(st):
         sds = {x.sensdet for x in gd.vols if x.sensdet}
         if sds != EXPECTED_SD[st.name]:
             problems.append(f"{v.name}: sensitive detectors {sds}")
-        if st.name == "calorimeter":
+        if st.name in ("calorimeter", "hcal"):
             n = int(v.params["layers"])
             copies = sorted(x.copy for x in gd.vols if x.sensdet == "Active")
             if copies != list(range(n)):

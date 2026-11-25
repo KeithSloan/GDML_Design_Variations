@@ -56,6 +56,7 @@ or LibreOffice.  Do not edit the CSV files by hand.
 | [shield](studies/shield) | slab shield, water phantom behind | material (Pb, W, Fe, concrete), thickness | Cs-137 662 keV pencil beam | FTFP_BERT, _EMZ, _LIV | dose transmission | uncollided fraction vs NIST attenuation |
 | [calorimeter](studies/calorimeter) | sampling calorimeter, absorber/active layers | absorber (Pb, W, Fe), active (scintillator, LAr), thicknesses, layers | 1 GeV e⁻, 10 GeV π⁺ | FTFP_BERT, QGSP_BIC, FTFP_BERT_EMZ | EM energy resolution | e/mip of the sampling fraction |
 | [detector](studies/detector) | crystal in Al housing | crystal (NaI, CsI, BGO, LYSO, LaBr3), size | Cs-137 point source (cone), pencil | FTFP_BERT, _EMZ, _LIV | full-energy-peak efficiency | crystal attenuation vs NIST |
+| [hcal](studies/hcal) (round 2, proposed) | contained hadron calorimeter, the calorimeter's layers at 800 × 800 × 1500 mm | absorber (Fe, Pb), sampling | 10 GeV e⁻ and π⁺ | FTFP_BERT, QGSP_BIC, FTFP_BERT_HP | pion energy resolution | e/mip of the sampling fraction |
 
 LYSO and LaBr3 are defined in the study with `GDMLDesign.addMaterial`, so
 the detector study also tests custom materials through GDML into Geant4.
@@ -170,6 +171,13 @@ and opens in ParaView or any VTK program.
     results section covers them.
 - **Round 2 ready to run:** the variants the reviews proposed were
   approved, and are now in the studies' `study.toml`.
+- **Round 2 design** (branch `round-2-design`), both proposed by the round-1
+  reviews:
+  - the detector study applies each crystal's published energy resolution
+    in the analysis, giving resolved peak efficiency, peak purity and
+    peak-to-Compton;
+  - a new `hcal` study, deep enough (about 7 λ) to contain 10 GeV pions.
+    Its three variants await approval before any run.
 - **Tests:** the Python stages pass `tests/test_pipeline.py`, every variant
   passes `tests/test_builds.py`, and the variation tables pass
   `tests/test_csv.py`.  `pipeline/check_setup.sh` is tested against

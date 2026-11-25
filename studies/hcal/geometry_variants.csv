@@ -1,0 +1,4 @@
+variant,width_mm,absorber_material,active_material,absorber_mm,active_mm,layers,gdml,note
+Fe20_Sc5_x60,800,G4_Fe,G4_PLASTIC_SC_VINYLTOLUENE,20,5,60,Fe20_Sc5_x60.gdml,"baseline iron/scintillator, about 7.5 lambda"
+Fe10_Sc5_x100,800,G4_Fe,G4_PLASTIC_SC_VINYLTOLUENE,10,5,100,Fe10_Sc5_x100.gdml,"finer iron sampling, same depth, about 6.6 lambda"
+Pb10_Sc2p5_x120,800,G4_Pb,G4_PLASTIC_SC_VINYLTOLUENE,10,2.5,120,Pb10_Sc2p5_x120.gdml,"lead:scintillator 4:1 by thickness (compensation ratio), about 7.0 lambda"

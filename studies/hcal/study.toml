@@ -1,0 +1,104 @@
+# Hadron calorimeter: a sampling calorimeter deep and wide enough to contain
+# 10 GeV pion showers.  Which absorber and sampling give e/pi closest to 1
+# and the best pion resolution, and how much do the hadronic physics lists
+# disagree?  Proposed by the round-1 calorimeter review
+# (docs/results/round1/calorimeter/REVIEW.md): that study's variants were
+# 0.8-2.5 interaction lengths deep and could not answer its pion questions.
+#
+# The layered geometry and the metrics are shared with studies/calorimeter
+# (build.py and metrics.py import its code).
+
+[study]
+name = "hcal"
+title = "Hadron calorimeter, contained (10 GeV pions and electrons)"
+description = """
+Alternating absorber and scintillator layers, 800 x 800 mm and 1500 mm deep
+(about 7 interaction lengths), starting at z = 0 in vacuum.  Every layer is
+a sensitive detector (copy number = layer).  Electrons and pions of the same
+energy (10 GeV) give the e/pi signal ratio directly.  The variants change the
+absorber and the sampling; Pb10_Sc2p5 uses the 4:1 lead-to-scintillator
+thickness ratio associated with compensating calorimeters.
+"""
+objective = """
+e/pi closest to 1 and the best pion energy resolution, for a contained
+shower; how much FTFP_BERT, QGSP_BIC and FTFP_BERT_HP (high-precision
+neutron transport, which matters for hydrogen-rich scintillator) disagree.
+"""
+primary_metric = "resolution"
+better = "lower"
+
+[world]
+size_mm = [1200.0, 1200.0, 3400.0]
+material = "G4_Galactic"
+
+[defaults]
+width_mm = 800.0
+absorber_material = "G4_Fe"
+active_material = "G4_PLASTIC_SC_VINYLTOLUENE"
+
+# Proposed variants - for approval before any run.  Interaction-length
+# depths estimated from the round-1 calorimeter's Geant4 values
+# (lambda: Fe 170 mm, Pb 183 mm, scintillator 700 mm).
+[[variants]]
+name = "Fe20_Sc5_x60"
+absorber_mm = 20.0
+active_mm = 5.0
+layers = 60
+note = "baseline iron/scintillator, about 7.5 lambda"
+
+[[variants]]
+name = "Fe10_Sc5_x100"
+absorber_mm = 10.0
+active_mm = 5.0
+layers = 100
+note = "finer iron sampling, same depth, about 6.6 lambda"
+
+[[variants]]
+name = "Pb10_Sc2p5_x120"
+absorber_material = "G4_Pb"
+absorber_mm = 10.0
+active_mm = 2.5
+layers = 120
+note = "lead:scintillator 4:1 by thickness (compensation ratio), about 7.0 lambda"
+
+[physics]
+# FTFP_BERT_HP needs Geant4's neutron data (G4NDL), installed with
+# conda-forge's geant4; it is the slowest of the three.
+lists = ["FTFP_BERT", "QGSP_BIC", "FTFP_BERT_HP"]
+
+[[sources]]
+name = "e_10GeV"
+particle = "e-"
+energy_MeV = 10000.0
+position_mm = [0.0, 0.0, -100.0]
+direction = [0.0, 0.0, 1.0]
+events = 1000
+
+[[sources]]
+name = "pi_10GeV"
+particle = "pi+"
+energy_MeV = 10000.0
+position_mm = [0.0, 0.0, -100.0]
+direction = [0.0, 0.0, 1.0]
+events = 1000
+
+[mesh]
+half_size_mm = [400.0, 400.0, 760.0]
+centre_mm = [0.0, 0.0, 750.0]
+bins = [40, 40, 76]
+physics = ["FTFP_BERT"]
+
+[analysis]
+compare = ["resolution", "e_over_pi", "containment", "sampling_fraction"]
+plot = ["resolution", "e_over_pi", "noncompensation", "containment",
+        "sampling_fraction", "last_layer_fraction"]
+
+[reference]
+# Minimum-ionising dE/dx (MeV cm2/g), as in studies/calorimeter (PDG).
+[reference.dedx_min_MeV_cm2_g]
+"G4_Pb" = 1.122
+"G4_Fe" = 1.451
+"G4_PLASTIC_SC_VINYLTOLUENE" = 1.956
+
+[checks]
+e_over_mip_range = [0.55, 1.0]

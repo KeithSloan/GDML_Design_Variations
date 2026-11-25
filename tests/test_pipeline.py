@@ -31,7 +31,7 @@ def fake_gdml(st, root):
 def main():
     root = Path(tempfile.mkdtemp(prefix="gdv_test_"))
     try:
-        for name in ("shield", "calorimeter", "detector"):
+        for name in ("shield", "calorimeter", "detector", "hcal"):
             st = studylib.load(name)
             fake_gdml(st, root)
             rc = run_matrix.main([name, "--app", str(FAKE), "--results", str(root),
