@@ -2,10 +2,10 @@
 
 Keith Sloan — draft, November 2026
 
-> **Status.** Sections 1–5 and 7–8 describe the pipeline and the three
-> sample studies as implemented in this repository.  Section 6 (Results) is
-> waiting for the first full run; it says which tables and figures will go
-> there and where they come from.  No results are quoted before then.
+> **Status.** Section 6 reports the first full run of the three sample
+> studies (round 1, 25 November 2026).  The full reviews, metric tables,
+> plots and renders are in [docs/results/round1](results/round1/README.md).
+> Round 2 (the variants proposed by the reviews) is pending.
 
 ## Abstract
 
@@ -24,7 +24,12 @@ design with proposed variations, and reviewing the checked results against
 the study's stated objective.  Generation, simulation and analysis are
 deterministic scripts, so every number in a review can be traced to a
 Geant4 run with a recorded seed.  Three sample studies, each with a
-built-in check against tabulated data, show the approach.
+built-in check against tabulated data, show the approach.  In the first
+full run (102 Geant4 runs, about 11 minutes on a laptop) the checks
+confirmed the FreeCAD → GDML → Geant4 chain, including custom materials.
+They also exposed a systematic 1–3 % excess photon attenuation in the
+standard electromagnetic option at 662 keV, and the review found that one
+study's design could not answer half of its own objective.
 
 ## 1. Introduction
 
@@ -262,19 +267,131 @@ against a stand-in for Geant4.
 
 ## 6. Results
 
-*Pending the first full run.*  For each study this section will contain:
+Round 1 ran every study at full statistics on a MacBook Air (macOS 26.1,
+arm64).  The GDML was generated with FreeCAD 1.1.4 and GDML workbench
+2.2.16, and simulated with Geant4 11.4.3 from conda-forge.  All 102 runs
+succeeded: 30 shield, 36 calorimeter and 36 detector.  They took about
+11 minutes elapsed (35 process-minutes), with runs in parallel (by
+default one per CPU core, less one).  The 22 GDML exports took 0.7–1.8 s
+each.  No run reported a geometry
+overlap.  Everything below is taken from the round-1 reviews and tables in
+[docs/results/round1](results/round1/README.md).  Values are quoted for the
+three physics lists in the order given in section 4.
 
-- the run summary: runs, events, any failures or overlaps;
-- the reference checks (pass/fail per run, largest deviation);
-- the primary metric for every variant and physics list, with errors, and
-  the ranking it gives;
-- the physics-list differences that are significant, and whether they
-  change the ranking;
-- one slice render per variant;
-- the review's recommendation and proposed next variants.
+### 6.1 Validation
 
-These come directly from `results/<study>/review_input.md`, `metrics.csv`
-and `REVIEW.md`, and will be copied under `docs/results/`.
+- **Attenuation.**  Of the 48 uncollided-fraction checks (30 shield, 18
+  detector), 46 pass.
+  - The two failures, W 10 mm (−2.5 %, −3.4 σ) and CsI 38 mm (−2.9 %,
+    −3.8 σ), are both FTFP_BERT.
+  - FTFP_BERT is below the NIST value in all 15 shielded cases (−0.3 % to
+    −2.9 %).  FTFP_BERT_EMZ and FTFP_BERT_LIV scatter on both sides of it.
+  - So the same GDML files are right, and the difference is in the physics
+    model.  Without polarisation, option 0's Compton process uses
+    `G4KleinNishinaCompton`, an empirical cross-section parametrisation.
+    The EMZ and LIV options use the Monash and Livermore models below
+    20 MeV.
+  - The results fit option 0 attenuating 662 keV photons about 1–2 % more
+    than the NIST tables.
+- **Custom materials.**  LYSO and LaBr₃, defined in FreeCAD with
+  `addMaterial`, pass their attenuation checks under every list (within
+  2.6 σ).  This tests formula-defined materials end to end.
+- **Calorimeter.**  The electron e/mip lies within the expected range in
+  all 18 runs (0.681–0.887), highest for iron and lowest for the thickest
+  lead layers.
+- **Spectra.**  The crystal spectra show the Compton edge near 0.48 MeV and
+  the full-energy peak at 0.662 MeV.
+
+### 6.2 Shield
+
+The dose transmission ranking is the same under all three lists
+([shield/REVIEW.md](results/round1/shield/REVIEW.md),
+[plot](results/round1/shield/plots/dose_transmission__Cs137_pencil.png)).
+
+| variant | ρt (g/cm²) | dose transmission |
+|---|---|---|
+| Pb 20 mm | 22.7 | 0.1355 ± 0.0050 / 0.1442 ± 0.0052 / 0.1527 ± 0.0054 |
+| Fe 40 mm | 31.5 | 0.2390 ± 0.0066 / 0.2352 ± 0.0064 / 0.2326 ± 0.0064 |
+| W 10 mm | 19.3 | 0.2469 ± 0.0070 / 0.2594 ± 0.0073 / 0.2443 ± 0.0069 |
+| concrete 100 mm | 23.0 | 0.3927 ± 0.0088 / 0.3856 ± 0.0087 / 0.3850 ± 0.0087 |
+| Pb 10 mm | 11.35 | 0.4062 ± 0.0096 / 0.4042 ± 0.0096 / 0.4009 ± 0.0095 |
+
+- **Per mass:** lead and tungsten attenuate the dose about twice as well
+  as iron or concrete (effective 0.067–0.088 vs 0.039–0.046 cm²/g).
+- **Per thickness:** tungsten is best.
+- **Build-up:** the low-Z shields show the larger build-up (2.3–2.4 at
+  their thicker variants, against 1.2–1.8 for lead).
+- **Physics lists:** no dose-transmission difference between lists
+  exceeds 3 σ.  The largest is +12.7 % (2.3 σ) for Pb 20 mm.
+
+### 6.3 Sampling calorimeter
+
+**Electrons (1 GeV).**  The resolution ranking is the same under all three
+lists ([calorimeter/REVIEW.md](results/round1/calorimeter/REVIEW.md)):
+- Pb 1 mm / scintillator 2 mm × 120: 0.0633 ± 0.0010 / 0.05892 ± 0.00094 /
+  0.05924 ± 0.00094.
+- The 2 mm / 4 mm baseline: 0.0802 ± 0.0013 / 0.0811 ± 0.0013 /
+  0.0766 ± 0.0012.
+- 4 mm / 4 mm: 0.1176–0.1225.
+
+Halving both layers improves σ/E by 21–27 % at the same depth.  For
+compactness, the tungsten variant (324 mm, 24.5 X₀) contains 98 % of the
+energy with a resolution close to the baseline.  Two physics-list effects
+are significant:
+- **EM option:** EMZ lowers the sampling fraction of the thin-layer
+  variant by 2.0 % (11 σ).  This is a calibration effect at fine sampling.
+- **Hadronic models:** QGSP_BIC raises the electron sampling fraction of
+  the iron/scintillator variant by 1.2 % (4 σ).  The two lists share their
+  EM physics, so this points to how photo-nuclear products are treated.
+  The cause has not been verified.
+
+**Pions (10 GeV).**  The variants are only 0.83–2.46 interaction lengths
+deep, and contain 21–48 % of the pion energy.  The pion resolution
+(0.48–1.03) and e/π (1.8–3.7) therefore measure leakage, and no
+physics-list difference is significant with 500 pions.  The review
+concluded that the pion half of the objective cannot be answered with this
+design, and proposed a separate, contained hadron-calorimeter study.
+
+### 6.4 Gamma-ray crystal detector
+
+Absolute full-energy-peak efficiency for the Cs-137 point source, per
+photon emitted into 4π, 10⁻³
+([detector/REVIEW.md](results/round1/detector/REVIEW.md)).  The ranking is
+the same under all three lists.
+
+| variant | crystal mass (kg) | peak efficiency | peak-to-total |
+|---|---|---|---|
+| NaI 3 × 3 in | 1.274 | 11.100 ± 0.079 / 10.967 ± 0.078 / 11.087 ± 0.079 | 0.552–0.556 |
+| BGO 1.5 × 1.5 in | 0.310 | 5.340 ± 0.057 / 5.103 ± 0.056 / 5.109 ± 0.056 | 0.764–0.782 |
+| LYSO 1.5 × 1.5 in | 0.308 | 4.486 ± 0.053 / 4.442 ± 0.053 / 4.359 ± 0.052 | 0.689–0.699 |
+| CsI 1.5 × 1.5 in | 0.196 | 2.375 ± 0.039 / 2.399 ± 0.039 / 2.449 ± 0.040 | 0.476–0.487 |
+| LaBr₃ 1.5 × 1.5 in | 0.221 | 2.156 ± 0.037 / 2.046 ± 0.036 / 2.036 ± 0.036 | 0.399–0.411 |
+| NaI 1.5 × 1.5 in | 0.159 | 1.668 ± 0.033 / 1.681 ± 0.033 / 1.690 ± 0.033 | 0.386–0.393 |
+
+- **Size matters most:** the 3-inch NaI has 6.5–6.7 times the peak
+  efficiency of the 1.5-inch one.
+- **At equal size:** BGO is best (3.0–3.2 × NaI), then LYSO, CsI and
+  LaBr₃.  BGO and LYSO are also best per kilogram.
+- **Physics lists:** for the high-Z crystals FTFP_BERT gives 4–6 % higher
+  peak efficiencies than EMZ and LIV (2–3 σ).  This is in the direction of
+  its stronger attenuation.
+
+### 6.5 What the pipeline added
+
+Three outcomes of round 1 come from the pipeline's structure rather than
+from any single run:
+- **The attenuation offset** of the standard EM option was found because
+  every study carries a reference check and every geometry runs under
+  several lists.  A single-list study would have shown it as a 1–3 %
+  shift in shielding performance, with nothing to compare it against.
+- **The design flaw** in the calorimeter's pion half was found by the
+  review, from the containment and longitudinal profiles, before any
+  conclusion was drawn from the pion numbers.
+- **Two pipeline faults** were caught by the first runs themselves:
+  - a crash when writing summaries for runs with a scoring mesh;
+  - near-zero deposits in vacuum drawn as if they were energy.
+  Both were fixed before the full run.  The reproducible records (seeds,
+  versions, logs) made each a short investigation.
 
 ## 7. Discussion and limitations
 
@@ -282,6 +399,10 @@ and `REVIEW.md`, and will be copied under `docs/results/`.
   light collection, quenching or electronics are simulated.  Peak
   efficiencies and resolutions are therefore ideal values, best used to
   compare variants.
+- **Choice of EM option for photons.**  Round 1 shows the standard EM
+  option (FTFP_BERT) attenuating 662 keV photons 1–3 % more than NIST in
+  high-Z materials.  For absolute shielding or efficiency numbers at these
+  energies, EMZ or LIV should be preferred.
 - **Physics-list spread is not an uncertainty.**  Agreement between
   reference lists shows robustness to model choice, but the lists share
   components and data and need not bracket reality.

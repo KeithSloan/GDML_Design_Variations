@@ -22,7 +22,8 @@ data, and improvements to the Geant4 application or the pipeline.
   For changes to `g4app/`, also build it against Geant4 11 and run one
   study with `EVENTS_SCALE=0.05 pipeline/run_all.sh <study>`.
 - Do not commit `results/`.  To publish the results of a study, put its
-  `REVIEW.md` and selected plots under `docs/results/<study>/`.
+  `REVIEW.md`, `review_input.md`, `metrics.csv`, `flags.json` and
+  selected plots under `docs/results/<round>/<study>/` (see `round1`).
 - The roles of AI and scripts are fixed in [docs/WORKFLOW.md](docs/WORKFLOW.md).
   AI-assisted contributions are welcome, within those roles.
 

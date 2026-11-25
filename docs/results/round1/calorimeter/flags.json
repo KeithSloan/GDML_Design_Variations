@@ -1,0 +1,1229 @@
+{
+ "flags": [
+  {
+   "severity": "medium",
+   "kind": "physics",
+   "message": "resolution for Pb1_Sc2_x120 / e_1GeV: QGSP_BIC differs from FTFP_BERT by -6.9% (-3.2 \u03c3)"
+  },
+  {
+   "severity": "medium",
+   "kind": "physics",
+   "message": "sampling_fraction for Pb1_Sc2_x120 / e_1GeV: FTFP_BERT_EMZ differs from FTFP_BERT by -2.0% (-11.4 \u03c3)"
+  },
+  {
+   "severity": "medium",
+   "kind": "physics",
+   "message": "sampling_fraction for Fe6_Sc4_x60 / e_1GeV: QGSP_BIC differs from FTFP_BERT by +1.2% (+4.1 \u03c3)"
+  }
+ ],
+ "reference_checks": [
+  {
+   "key": "Pb2_Sc4_x60__FTFP_BERT__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7259879707906093,
+   "error": 0.0012843885767529497,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb2_Sc4_x60__QGSP_BIC__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.72496048873442,
+   "error": 0.0013002137607717743,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb2_Sc4_x60__FTFP_BERT_EMZ__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7226519843649571,
+   "error": 0.00122666285780827,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb4_Sc4_x30__FTFP_BERT__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.6818624135232537,
+   "error": 0.0018356503656636702,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb4_Sc4_x30__QGSP_BIC__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.6810947303400163,
+   "error": 0.0018713239986359823,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb4_Sc4_x30__FTFP_BERT_EMZ__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.6836061646107058,
+   "error": 0.0017927105213015031,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb1_Sc2_x120__FTFP_BERT__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7909591983406727,
+   "error": 0.0010231181539832246,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb1_Sc2_x120__QGSP_BIC__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7932600238135815,
+   "error": 0.0010174962204270114,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb1_Sc2_x120__FTFP_BERT_EMZ__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7749364316809666,
+   "error": 0.0009645386278633073,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "W1p4_Sc4_x60__FTFP_BERT__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7354701357516872,
+   "error": 0.00139240712447372,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "W1p4_Sc4_x60__QGSP_BIC__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7344308510512298,
+   "error": 0.0013946910026337662,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "W1p4_Sc4_x60__FTFP_BERT_EMZ__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7332948317641835,
+   "error": 0.0013217537456299813,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Fe6_Sc4_x60__FTFP_BERT__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.8761401636646191,
+   "error": 0.0018901797147984698,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Fe6_Sc4_x60__QGSP_BIC__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.8870297219906556,
+   "error": 0.0019009966303680092,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Fe6_Sc4_x60__FTFP_BERT_EMZ__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.8704302695279214,
+   "error": 0.0018131372303777247,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb2_LAr4_x60__FTFP_BERT__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7571918842264364,
+   "error": 0.0012483523623610076,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb2_LAr4_x60__QGSP_BIC__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7571451077247406,
+   "error": 0.0012371217831834568,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  },
+  {
+   "key": "Pb2_LAr4_x60__FTFP_BERT_EMZ__e_1GeV",
+   "metric": "e_over_mip",
+   "value": 0.7548959472605461,
+   "error": 0.0012274955470970863,
+   "range": [
+    0.55,
+    1.0
+   ],
+   "ok": true
+  }
+ ],
+ "physics": [
+  {
+   "metric": "resolution",
+   "variant": "Pb2_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.08110799240110364,
+   "base_value": 0.08024543736107004,
+   "rel_diff": 0.010748960544042832,
+   "sigma": 0.474931891826301,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb2_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.9171806685089955,
+   "base_value": 1.0045651646667495,
+   "rel_diff": -0.08698738442392893,
+   "sigma": -1.1996219594224489,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb2_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.07656250842885745,
+   "base_value": 0.08024543736107004,
+   "rel_diff": -0.04589580483736398,
+   "sigma": -2.0868082970578317,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb2_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.967062590980688,
+   "base_value": 1.0045651646667495,
+   "rel_diff": -0.03733214629088042,
+   "sigma": -0.4952473616610014,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb4_Sc4_x30",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.12247255351962678,
+   "base_value": 0.12094022534985649,
+   "rel_diff": 0.01267012828310488,
+   "sigma": 0.5547516068630592,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb4_Sc4_x30",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 1.0321842373007026,
+   "base_value": 1.0341122876297215,
+   "rel_diff": -0.00186444968508995,
+   "sigma": -0.023561169337844596,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb4_Sc4_x30",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.11757282878239693,
+   "base_value": 0.12094022534985649,
+   "rel_diff": -0.02784347852601017,
+   "sigma": -1.2447492457941736,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb4_Sc4_x30",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.9760339016400341,
+   "base_value": 1.0341122876297215,
+   "rel_diff": -0.05616255283341453,
+   "sigma": -0.7418974044523751,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb1_Sc2_x120",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.05891631899715523,
+   "base_value": 0.0632521742573683,
+   "rel_diff": -0.06854871490378824,
+   "sigma": -3.159765371061401,
+   "significant": true
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb1_Sc2_x120",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 1.004105657809344,
+   "base_value": 0.9815445358829772,
+   "rel_diff": 0.0229853268003486,
+   "sigma": 0.2945946187077836,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb1_Sc2_x120",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.05923841864853953,
+   "base_value": 0.0632521742573683,
+   "rel_diff": -0.063456405348172,
+   "sigma": -2.9175663102292946,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb1_Sc2_x120",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.9706331386545707,
+   "base_value": 0.9815445358829772,
+   "rel_diff": -0.01111655847443625,
+   "sigma": -0.14658412420678887,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "W1p4_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.08444691509535052,
+   "base_value": 0.08426980616259133,
+   "rel_diff": 0.002101689096299429,
+   "sigma": 0.09320757356566606,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "W1p4_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.8404302330651771,
+   "base_value": 0.8987513377052997,
+   "rel_diff": -0.0648912576742624,
+   "sigma": -0.9436345080887657,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "W1p4_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.0816591766240017,
+   "base_value": 0.08426980616259133,
+   "rel_diff": -0.030979417865903826,
+   "sigma": -1.3971227490263454,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "W1p4_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.9093493075915299,
+   "base_value": 0.8987513377052997,
+   "rel_diff": 0.011791882183217686,
+   "sigma": 0.16142131811241314,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Fe6_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.09723748474949243,
+   "base_value": 0.09931789722167632,
+   "rel_diff": -0.0209470048237171,
+   "sigma": -0.9373929748005968,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Fe6_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.5193414474382498,
+   "base_value": 0.5042905246239171,
+   "rel_diff": 0.02984573788206155,
+   "sigma": 0.5321592058135591,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Fe6_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.09560429423321415,
+   "base_value": 0.09931789722167632,
+   "rel_diff": -0.037391075449105145,
+   "sigma": -1.6873296443667885,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Fe6_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.48527083845854063,
+   "base_value": 0.5042905246239171,
+   "rel_diff": -0.037715731778939755,
+   "sigma": -0.703452463474141,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb2_LAr4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.07625098933971951,
+   "base_value": 0.07619906465095995,
+   "rel_diff": 0.0006814347262319577,
+   "sigma": 0.030281342125201366,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb2_LAr4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.9487392840915128,
+   "base_value": 0.8925911283066778,
+   "rel_diff": 0.06290467606523593,
+   "sigma": 0.8287489613154972,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb2_LAr4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.07515464181260471,
+   "base_value": 0.07619906465095995,
+   "rel_diff": -0.013706504707628036,
+   "sigma": -0.6135315976780236,
+   "significant": false
+  },
+  {
+   "metric": "resolution",
+   "variant": "Pb2_LAr4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.8866793258546171,
+   "base_value": 0.8925911283066778,
+   "rel_diff": -0.006623192035614209,
+   "sigma": -0.0924189130631454,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb2_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.17450626809431666,
+   "base_value": 0.17475359475824628,
+   "rel_diff": -0.0014152879903373478,
+   "sigma": -0.5621955072148875,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb2_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.22515745497154033,
+   "base_value": 0.2230923645004899,
+   "rel_diff": 0.00925666136388951,
+   "sigma": 0.8485544944334588,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb2_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.17395058473135486,
+   "base_value": 0.17475359475824628,
+   "rel_diff": -0.0045950987617868954,
+   "sigma": -1.878317205438818,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb2_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.22390807330053947,
+   "base_value": 0.2230923645004899,
+   "rel_diff": 0.0036563725606475845,
+   "sigma": 0.333235641172969,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb4_Sc4_x30",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.09318953179443029,
+   "base_value": 0.09329456863178276,
+   "rel_diff": -0.0011258622971614762,
+   "sigma": -0.2928581626313977,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb4_Sc4_x30",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.13249569962379204,
+   "base_value": 0.13161775481922228,
+   "rel_diff": 0.0066704131655765265,
+   "sigma": 0.41775603757049157,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb4_Sc4_x30",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.09353315416205778,
+   "base_value": 0.09329456863178276,
+   "rel_diff": 0.002557335692463223,
+   "sigma": 0.6796081870924533,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb4_Sc4_x30",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.1330981625365106,
+   "base_value": 0.13161775481922228,
+   "rel_diff": 0.01124778126873291,
+   "sigma": 0.6818606123903604,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb1_Sc2_x120",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.1909467461127092,
+   "base_value": 0.19039291114783466,
+   "rel_diff": 0.0029089053869474552,
+   "sigma": 1.5945424479516945,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb1_Sc2_x120",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.2384129787934879,
+   "base_value": 0.23508056894976567,
+   "rel_diff": 0.014175607361382308,
+   "sigma": 1.3349492537286285,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb1_Sc2_x120",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.18653604824595083,
+   "base_value": 0.19039291114783466,
+   "rel_diff": -0.020257387098247006,
+   "sigma": -11.395216571883637,
+   "significant": true
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb1_Sc2_x120",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.23150756173499287,
+   "base_value": 0.23508056894976567,
+   "rel_diff": -0.015199075069179006,
+   "sigma": -1.4837860519814066,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "W1p4_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.1520051323840187,
+   "base_value": 0.15222023310895635,
+   "rel_diff": -0.0014130889208643917,
+   "sigma": -0.5273477854219277,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "W1p4_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.1948624926705024,
+   "base_value": 0.19470156793216678,
+   "rel_diff": 0.0008265199918250639,
+   "sigma": 0.08370795063295212,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "W1p4_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.151770010504442,
+   "base_value": 0.15222023310895635,
+   "rel_diff": -0.0029577053938164353,
+   "sigma": -1.13305834156905,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "W1p4_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.19369757773867982,
+   "base_value": 0.19470156793216678,
+   "rel_diff": -0.005156559364928919,
+   "sigma": -0.5219123372947022,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Fe6_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.09347035422517852,
+   "base_value": 0.09232287196065403,
+   "rel_diff": 0.012429013961063976,
+   "sigma": 4.0620897018718605,
+   "significant": true
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Fe6_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.1054884029108611,
+   "base_value": 0.10414187223787202,
+   "rel_diff": 0.012929772089303798,
+   "sigma": 1.866250643812713,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Fe6_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.09172119445840791,
+   "base_value": 0.09232287196065403,
+   "rel_diff": -0.006517101228204169,
+   "sigma": -2.180008629092931,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Fe6_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.10326864529191805,
+   "base_value": 0.10414187223787202,
+   "rel_diff": -0.008384974527435245,
+   "sigma": -1.1873288907627535,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb2_LAr4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.1891574229792876,
+   "base_value": 0.1891691091441013,
+   "rel_diff": -6.177628507410888e-05,
+   "sigma": -0.02661515828867443,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb2_LAr4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.2181403072699944,
+   "base_value": 0.2149479089921624,
+   "rel_diff": 0.014851962472211797,
+   "sigma": 1.827698619808214,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb2_LAr4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.18859551563427096,
+   "base_value": 0.1891691091441013,
+   "rel_diff": -0.0030321732360297153,
+   "sigma": -1.3114012288428973,
+   "significant": false
+  },
+  {
+   "metric": "sampling_fraction",
+   "variant": "Pb2_LAr4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.21688750074287033,
+   "base_value": 0.2149479089921624,
+   "rel_diff": 0.009023543237997507,
+   "sigma": 1.1404527797346846,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb2_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.9702548278695,
+   "base_value": 0.9702339466725001,
+   "rel_diff": 2.1521816538741352e-05,
+   "sigma": 0.03520112398932609,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb2_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.24927186803649998,
+   "base_value": 0.21388416533885998,
+   "rel_diff": 0.16545265350323954,
+   "sigma": 2.4418777555457,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb2_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.9699360181805,
+   "base_value": 0.9702339466725001,
+   "rel_diff": -0.0003070687157688368,
+   "sigma": -0.5524428962494703,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb2_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.23442579742574,
+   "base_value": 0.21388416533885998,
+   "rel_diff": 0.09604092034740198,
+   "sigma": 1.4213051353954633,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb4_Sc4_x30",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.97997538725705,
+   "base_value": 0.9803765085896,
+   "rel_diff": -0.00040915028974639284,
+   "sigma": -0.9097955880161606,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb4_Sc4_x30",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.22568538118749998,
+   "base_value": 0.21731493311602,
+   "rel_diff": 0.03851759265439518,
+   "sigma": 0.5618378510869533,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb4_Sc4_x30",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.9800576948230999,
+   "base_value": 0.9803765085896,
+   "rel_diff": -0.00032519523234881447,
+   "sigma": -0.7390988572711361,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb4_Sc4_x30",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.23095487832303999,
+   "base_value": 0.21731493311602,
+   "rel_diff": 0.06276579805833184,
+   "sigma": 0.924257723449963,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb1_Sc2_x120",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.9705220472314999,
+   "base_value": 0.9696597371992001,
+   "rel_diff": 0.0008892913660523736,
+   "sigma": 1.1200798182925742,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb1_Sc2_x120",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.21822246818007998,
+   "base_value": 0.23046814536107998,
+   "rel_diff": -0.053133925132318856,
+   "sigma": -0.8456158723952563,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb1_Sc2_x120",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.9698895178209999,
+   "base_value": 0.9696597371992001,
+   "rel_diff": 0.00023697036494832474,
+   "sigma": 0.30509894376220714,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb1_Sc2_x120",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.2277447372486,
+   "base_value": 0.23046814536107998,
+   "rel_diff": -0.011816852642317017,
+   "sigma": -0.18672704434265736,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "W1p4_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.9812658370125,
+   "base_value": 0.9816687564395,
+   "rel_diff": -0.0004104433642783703,
+   "sigma": -1.052796800189032,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "W1p4_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.29743652663195996,
+   "base_value": 0.26436467182202,
+   "rel_diff": 0.1250993734601768,
+   "sigma": 2.0822201059487018,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "W1p4_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.98035719093065,
+   "base_value": 0.9816687564395,
+   "rel_diff": -0.0013360570969041161,
+   "sigma": -2.368972757307127,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "W1p4_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.27561993301860005,
+   "base_value": 0.26436467182202,
+   "rel_diff": 0.04257475523869355,
+   "sigma": 0.7080870960474254,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Fe6_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.9787152940505,
+   "base_value": 0.9782054834883,
+   "rel_diff": 0.0005211691927772707,
+   "sigma": 0.6801683345071645,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Fe6_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.45663296983179996,
+   "base_value": 0.45209048656702006,
+   "rel_diff": 0.010047730265844705,
+   "sigma": 0.30084682994000944,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Fe6_Sc4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.9783644551968,
+   "base_value": 0.9782054834883,
+   "rel_diff": 0.00016251361414688906,
+   "sigma": 0.21408039005428087,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Fe6_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.47698149301698006,
+   "base_value": 0.45209048656702006,
+   "rel_diff": 0.055057576280738756,
+   "sigma": 1.6624538437124434,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb2_LAr4_x60",
+   "source": "e_1GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.97139713613655,
+   "base_value": 0.971356325419,
+   "rel_diff": 4.2014157402452395e-05,
+   "sigma": 0.06442253429215902,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb2_LAr4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 0.22632254685382,
+   "base_value": 0.24748167640542001,
+   "rel_diff": -0.08549776233508904,
+   "sigma": -1.4812257984972694,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb2_LAr4_x60",
+   "source": "e_1GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.97086971827965,
+   "base_value": 0.971356325419,
+   "rel_diff": -0.000500956370609007,
+   "sigma": -0.7891664819230343,
+   "significant": false
+  },
+  {
+   "metric": "containment",
+   "variant": "Pb2_LAr4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 0.24264982600897997,
+   "base_value": 0.24748167640542001,
+   "rel_diff": -0.019524073323814874,
+   "sigma": -0.33923768633936413,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Pb2_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 3.0167355703118037,
+   "base_value": 3.553360285276465,
+   "rel_diff": -0.15101894316436026,
+   "sigma": -2.6545486662001188,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Pb2_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 3.2143548932581303,
+   "base_value": 3.553360285276465,
+   "rel_diff": -0.09540417092604472,
+   "sigma": -1.6002201728989034,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Pb4_Sc4_x30",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 3.0540566373348574,
+   "base_value": 3.1977551612727795,
+   "rel_diff": -0.04493731279937228,
+   "sigma": -0.7020995386566657,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Pb4_Sc4_x30",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 2.9820712992524063,
+   "base_value": 3.1977551612727795,
+   "rel_diff": -0.06744852283641567,
+   "sigma": -1.0928610379234613,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Pb1_Sc2_x120",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 3.5619540300211696,
+   "base_value": 3.407552041123698,
+   "rel_diff": 0.045311703837266945,
+   "sigma": 0.704726154182025,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Pb1_Sc2_x120",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 3.4314012624468635,
+   "base_value": 3.407552041123698,
+   "rel_diff": 0.006998930914434596,
+   "sigma": 0.1129247039301544,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "W1p4_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 2.573489356176825,
+   "base_value": 2.90311663719239,
+   "rel_diff": -0.11354255519487104,
+   "sigma": -2.1723214548883614,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "W1p4_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 2.7869905129132007,
+   "base_value": 2.90311663719239,
+   "rel_diff": -0.040000502491520755,
+   "sigma": -0.7131243564239734,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Fe6_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 1.8991456848861572,
+   "base_value": 1.9181768695818233,
+   "rel_diff": -0.00992149629028477,
+   "sigma": -0.30662758698725734,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Fe6_Sc4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 1.8217985803426706,
+   "base_value": 1.9181768695818233,
+   "rel_diff": -0.05024473538780805,
+   "sigma": -1.636620051081631,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Pb2_LAr4_x60",
+   "source": "pi_10GeV",
+   "physics": "QGSP_BIC",
+   "base": "FTFP_BERT",
+   "value": 3.7218294259157236,
+   "base_value": 3.454240066690323,
+   "rel_diff": 0.0774669258821351,
+   "sigma": 1.2753341758041208,
+   "significant": false
+  },
+  {
+   "metric": "e_over_pi",
+   "variant": "Pb2_LAr4_x60",
+   "source": "pi_10GeV",
+   "physics": "FTFP_BERT_EMZ",
+   "base": "FTFP_BERT",
+   "value": 3.4791872970875124,
+   "base_value": 3.454240066690323,
+   "rel_diff": 0.0072222051494795336,
+   "sigma": 0.12778359730453906,
+   "significant": false
+  }
+ ]
+}

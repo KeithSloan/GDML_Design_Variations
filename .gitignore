@@ -1,5 +1,5 @@
 # pipeline outputs (keep reviews you want under docs/results/)
-results/
+/results/
 
 # Geant4 application build
 g4app/build/

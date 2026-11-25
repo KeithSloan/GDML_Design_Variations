@@ -67,7 +67,8 @@ pipeline/run_all.sh shield         # stages 3-4a; resumes if interrupted
 Then ask for the review, e.g. "review results/shield".  The AI reads
 `results/shield/review_input.md` and the pictures and writes
 `results/shield/REVIEW.md`.  Results stay on your machine; commit the
-reviews you want to keep under `docs/results/`.
+reviews you want to keep under `docs/results/<round>/` (e.g.
+[round1](results/round1/README.md)).
 
 A scheduled task can run stage 3-4a unattended and ask for the review
 afterwards.  The approval of new variants stays with you.
