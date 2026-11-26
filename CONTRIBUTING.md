@@ -17,6 +17,7 @@ data, and improvements to the Geant4 application or the pipeline.
   python3 tests/test_builds.py
   python3 tests/test_csv.py
   python3 tests/test_pipeline.py
+  python3 tests/test_compare.py
   ```
 
   For changes to `g4app/`, also build it against Geant4 11 and run one

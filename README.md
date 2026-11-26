@@ -111,6 +111,10 @@ Close FreeCAD first: `run_all.sh` starts its own copy to generate the GDML.
 
 Then ask for the review of `results/shield/review_input.md` (stage 5).
 
+To reproduce the published results, with Claude or by hand, see
+[docs/REPRODUCING.md](docs/REPRODUCING.md): ready-made prompts, and
+`tools/compare_results.py` to check a new run against the published tables.
+
 The steps can also be run one at a time:
 
 ```bash
@@ -154,11 +158,12 @@ and opens in ParaView or any VTK program.
 | `studies/` | the studies (`study.toml`, `build.py`, `metrics.py`, the two variation tables); format in [studies/README.md](studies/README.md) |
 | `g4app/` | `gdmlvar`: GDML geometry, `SensDet` volumes as detectors, any reference physics list by name, GPS source, scoring mesh |
 | `pipeline/` | the scripted stages |
-| `tests/` | `test_builds.py` (geometry of every variant, no FreeCAD needed), `test_pipeline.py` (all scripts against a stand-in for Geant4), `test_csv.py` (variation tables up to date) |
+| `tests/` | `test_builds.py` (geometry of every variant, no FreeCAD needed), `test_pipeline.py` (all scripts against a stand-in for Geant4), `test_csv.py` (variation tables up to date), `test_compare.py` (the results comparison) |
 | `environment.yml` | the conda environment (Geant4, build tools, Python packages) |
 | `pipeline/check_setup.sh` | checks the environment and says what to fix |
 | `tools/export_csv.py` | writes the variation tables from `study.toml` (`--check` to verify) |
 | `tools/attenuation_refs.py` | regenerates the NIST reference coefficients |
+| `tools/compare_results.py` | compares `results/<study>/metrics.csv` with a published round (`docs/results/roundN`) |
 | `docs/` | workflow, review guide, [paper](docs/PAPER.md) |
 
 ## Status

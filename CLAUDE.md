@@ -55,6 +55,7 @@ python3 tools/export_csv.py          # after any change to a study.toml
 python3 tests/test_builds.py
 python3 tests/test_csv.py
 python3 tests/test_pipeline.py
+python3 tests/test_compare.py
 python3 -m py_compile pipeline/*.py studies/*/*.py tests/*.py tools/*.py
 ```
 
